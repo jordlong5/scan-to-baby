@@ -200,7 +200,22 @@ section{position:relative}
 .bonuslist li{padding-left:30px;position:relative;margin-bottom:12px;font-size:1.02rem}
 .bonuslist li::before{content:'[ ]';position:absolute;left:0;color:var(--sage);font-family:'Fraunces';font-weight:600}
 .logistics{margin-top:22px;font-size:.95rem;color:var(--muted);border-top:1px solid rgba(58,50,54.1);padding-top:18px}
-.guarantee{background:var(--bg);border-radius:12px;padding:18px 20px;font-size:.95rem;margin-top:24px;border:1px dashed rgba(157,196,194.6)}
+.guarantee{background:var(--bg);border-radius:12px;padding:18px 20px;font-size:.95rem;margin-top:24px;border:1px dashed rgba(157,196,194,.6)}
+
+/* pricing tiers */
+.tiers{display:flex;flex-direction:column;gap:14px;margin:26px 0 8px}
+.tier{display:flex;align-items:center;justify-content:space-between;gap:18px;background:var(--bg);border:1px solid rgba(58,50,54,.12);border-radius:14px;padding:18px 20px;transition:border-color .3s,transform .3s,box-shadow .3s}
+.tier:hover{border-color:var(--sage);transform:translateY(-2px)}
+.tier.feat{border-color:var(--rose-deep);background:#fff;box-shadow:0 18px 44px -28px rgba(192,106,133,.6)}
+.tier .info h4{font-family:'Fraunces',serif;font-size:1.18rem;font-weight:600;margin-bottom:3px}
+.tier .info p{font-size:.86rem;color:var(--muted);margin:0;line-height:1.4}
+.tier .right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0}
+.tier .pr{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;line-height:1}
+.tier .buy{background:var(--rose);color:#fff;font-weight:700;font-size:.82rem;padding:10px 18px;border-radius:30px;text-decoration:none;white-space:nowrap;transition:background .3s,transform .3s}
+.tier .buy:hover{background:var(--rose-deep);transform:translateY(-1px)}
+.tier.feat .buy{background:var(--rose-deep)}
+.badge-best{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--rose-deep);margin-bottom:5px}
+@media(max-width:520px){.tier{flex-direction:column;align-items:flex-start;gap:12px}.tier .right{align-items:flex-start;width:100%}.tier .buy{width:100%;text-align:center}}
 
 /* faq */
 .faq{padding:110px 0}
@@ -249,7 +264,7 @@ footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
 
 <header class="nav" id="nav">
   <div class="logo">Scan to <b>Baby</b></div>
-  <a href="#start" class="nav-cta">Free preview</a>
+  <a href="#pricing" class="nav-cta">Get yours</a>
 </header>
 
 <!-- HERO -->
@@ -257,11 +272,11 @@ footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="eyebrow hero-eyebrow rv">For first-time mums, proud dads and grandparents-to-be</div>
+        <div class="eyebrow hero-eyebrow rv">State-of-the-art AI imaging for your 3D ultrasound</div>
         <h1 class="rv">Meet your baby before you <em>meet your baby</em></h1>
-        <p class="sub rv">Send us your ultrasound and we'll bring out the little face hiding in it. You get a free preview first, no card needed. Love it? We print it, frame it and post it to your door.</p>
+        <p class="sub rv">Our advanced AI imaging technology enhances your grainy ultrasound into a clear, lifelike 3D image of your baby's face. Choose your image, check out securely, then send us your scan, we deliver it digitally or printed and posted to your door.</p>
         <div class="cta-row rv">
-          <a href="#start" class="btn mag">See your baby's face free</a>
+          <a href="#pricing" class="btn mag">Get your enhanced scan</a>
           <a href="#how" class="txtlink">How it works</a>
         </div>
       </div>
@@ -291,26 +306,6 @@ footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
       </div>
     </div>
 
-    <!-- inline start form -->
-    <div id="start" style="margin-top:80px">
-      <div class="startform rv">
-        <h3>Start with a free preview</h3>
-        <p class="note">Upload your scan and your email. We'll send your free portrait preview within 24 hours. No card, no commitment.</p>
-        <form onsubmit="return showThanks(event)">
-          <div class="field">
-            <label for="em">Your email</label>
-            <input type="email" id="em" required placeholder="you@email.com">
-          </div>
-          <div class="field">
-            <label for="sc">Your ultrasound photo</label>
-            <input type="file" id="sc" accept="image/*">
-          </div>
-          <button class="btn mag" type="submit">Send me my free preview</button>
-        </form>
-        <p class="formnote" id="thanks" style="display:none"><b>Thank you.</b> Your scan is on its way to our studio. Watch your inbox within 24 hours. You only pay if you love it.</p>
-        <p class="formnote">Free preview first. <b>You pay nothing</b> until you've seen your baby's face and said yes.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -364,23 +359,23 @@ footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
     <h2 class="sec-head rv" style="margin-bottom:50px;max-width:18ch">Small details, big feelings.</h2>
     <div class="prop rv">
       <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M24 6 L27 19 L40 22 L27 25 L24 38 L21 25 L8 22 L21 19 Z" stroke-linejoin="round"/><circle cx="38" cy="10" r="2"/><circle cx="10" cy="36" r="1.5"/></svg>
-      <h3>From grey blur to real face</h3>
-      <p>Your scan is precious but you can barely make it out. We bring out the soft features hiding in that photo so you can finally see your little one.</p>
+      <h3>From grey blur to a clear face</h3>
+      <p>Your scan is precious but you can barely make it out. Our AI imaging enhances the real features captured in that scan so you can finally see your little one.</p>
     </div>
     <div class="prop rv">
       <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="8" y="10" width="32" height="28" rx="2"/><rect x="13" y="15" width="22" height="18" rx="1"/><circle cx="24" cy="24" r="4"/></svg>
       <h3>A real print, not just a file</h3>
-      <p>Most services email you a JPEG and call it done. We post you a proper framed print for the nursery, plus the digital copy to share.</p>
+      <p>Choose a digital image, or have it printed and framed and posted to your door, with the digital copy included to share.</p>
     </div>
     <div class="prop rv">
-      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 24 Q24 8 42 24 Q24 40 6 24 Z"/><circle cx="24" cy="24" r="6"/></svg>
-      <h3>Preview before you pay</h3>
-      <p>See your portrait first. If it doesn't give you goosebumps, you don't pay a penny. Simple as that.</p>
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="24" cy="24" r="6"/><path d="M24 4 V12 M24 36 V44 M4 24 H12 M36 24 H44 M10 10 L15 15 M38 38 L33 33 M38 10 L33 15 M10 38 L15 33" stroke-linecap="round"/></svg>
+      <h3>State-of-the-art AI imaging</h3>
+      <p>Built on advanced image-enhancement technology that reconstructs your scan into a clear, lifelike 3D image, not a hand-drawn guess.</p>
     </div>
     <div class="prop rv">
       <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M24 40 C8 28 8 14 18 14 C22 14 24 18 24 18 C24 18 26 14 30 14 C40 14 40 28 24 40 Z" stroke-linejoin="round"/><path d="M4 24 L14 24 L17 18 L21 30 L24 24 L34 24" stroke-linecap="round"/></svg>
       <h3>A glimpse of the future too</h3>
-      <p>Add an optional future baby picture, a gentle imagining of how your child might look as a toddler. Tearjerker guaranteed.</p>
+      <p>Add the optional Future Baby Pic, an AI projection of how your child might look as a toddler. Tearjerker guaranteed.</p>
     </div>
   </div>
 </section>
@@ -391,24 +386,24 @@ footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
     <div style="text-align:center">
       <div class="eyebrow rv">How it works</div>
       <h2 class="sec-head rv" style="margin-top:10px">Three steps. <span style="font-style:italic;font-family:Fraunces">One happy cry.</span></h2>
-      <p class="rv" style="color:var(--muted);margin-top:14px"><span id="countup">24</span> hours from upload to your free preview.</p>
+      <p class="rv" style="color:var(--muted);margin-top:14px"><span id="countup">24</span> hours from scan to your enhanced image.</p>
     </div>
     <div class="film">
       <div class="sprockets l"><span></span><span></span><span></span><span></span><span></span><span></span></div>
       <div class="sprockets r"><span></span><span></span><span></span><span></span><span></span><span></span></div>
       <div class="frame rv">
         <div class="num">1</div>
-        <div><h3>Upload your scan</h3><p>Snap a photo of your ultrasound or upload the file. Takes about a minute on your phone.</p></div>
+        <div><h3>Pick your image and pay</h3><p>Choose digital, printed, the Future Baby Pic or the bundle, and check out securely. Takes under a minute.</p></div>
         <div class="filmimg"><svg class="portrait-img focusing" data-focus viewBox="0 0 200 200" preserveAspectRatio="none"><rect width="200" height="200" fill="#bdb4af"/><ellipse cx="100" cy="100" rx="60" ry="70" fill="#a89f9a"/></svg></div>
       </div>
       <div class="frame rv">
         <div class="num">2</div>
-        <div><h3>We work our magic</h3><p>Our artists turn that grainy image into a clear, lifelike portrait of your baby's face.</p></div>
+        <div><h3>Send us your scan</h3><p>Upload a photo of your ultrasound. The AI enhances even low-clarity, grainy scans.</p></div>
         <div class="filmimg"><svg class="portrait-img focusing" data-focus viewBox="0 0 200 200" preserveAspectRatio="none"><rect width="200" height="200" fill="#e6b89c"/><ellipse cx="100" cy="90" rx="55" ry="65" fill="#f5d2bd"/><circle cx="85" cy="85" r="6" fill="#5b4338"/><circle cx="115" cy="85" r="6" fill="#5b4338"/><path d="M88 110 Q100 118 112 110" stroke="#c08368" stroke-width="3" fill="none"/></svg></div>
       </div>
       <div class="frame rv">
         <div class="num">3</div>
-        <div><h3>See it free, then choose</h3><p>We send you a free preview. Love it? Pick your keepsake. The framed print drops through your letterbox a few days later.</p></div>
+        <div><h3>We enhance and deliver</h3><p>Our AI imaging reconstructs your scan into a clear 3D image. The digital arrives within 24 hours; framed prints post a few days later.</p></div>
         <div class="filmimg"><svg class="portrait-img focusing" data-focus viewBox="0 0 200 200" preserveAspectRatio="none"><rect width="200" height="200" fill="#ecbd9f"/><ellipse cx="100" cy="90" rx="55" ry="65" fill="#f7d4bf"/><circle cx="85" cy="85" r="6" fill="#5b4338"/><circle cx="115" cy="85" r="6" fill="#5b4338"/><path d="M88 110 Q100 120 112 110" stroke="#c08368" stroke-width="4" fill="none"/></svg></div>
       </div>
     </div>
@@ -458,7 +453,7 @@ footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
 </section>
 
 <!-- OFFER -->
-<section class="offer">
+<section class="offer" id="pricing">
   <div class="wrap">
     <div class="offer-grid">
       <div class="nursery rv">
@@ -479,21 +474,29 @@ footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
         <p class="gallery-label">framed, ready for the nursery wall</p>
       </div>
       <div>
-        <h2 class="rv">Your keepsake, sorted.</h2>
-        <p class="rv" style="color:var(--text)">A frame-ready portrait of your baby's face, printed and posted across the UK for free. The digital copy comes with it.</p>
-        <div class="price rv">
-          <span class="now">£29.99</span>
-          <span class="was">£45</span>
+        <div class="eyebrow rv">Choose your image</div>
+        <h2 class="rv" style="margin-top:8px">Pay once. We enhance and deliver.</h2>
+        <p class="rv" style="color:var(--text)">Pick the option that suits you, check out securely, then send us your scan. Our AI imaging does the rest.</p>
+        <div class="tiers">
+          <div class="tier rv">
+            <div class="info"><h4>3D Scan Enhancement, digital</h4><p>Your AI-enhanced 3D image, sent straight to your inbox</p></div>
+            <div class="right"><span class="pr">£9.99</span><a href="https://buy.stripe.com/test_eVq4gz9Lq8Gyf8t4E17ok0m" class="buy">Buy now</a></div>
+          </div>
+          <div class="tier rv">
+            <div class="info"><h4>3D Scan Enhancement, printed</h4><p>Framed print posted to your door, with the digital copy included</p></div>
+            <div class="right"><span class="pr">£19.99</span><a href="https://buy.stripe.com/test_eVq4gz9Lq8Gyf8t4E17ok0m" class="buy">Buy now</a></div>
+          </div>
+          <div class="tier rv">
+            <div class="info"><h4>Future Baby Pic</h4><p>An AI projection of how your little one may look as a toddler</p></div>
+            <div class="right"><span class="pr">£14.99</span><a href="https://buy.stripe.com/test_eVq4gz9Lq8Gyf8t4E17ok0m" class="buy">Buy now</a></div>
+          </div>
+          <div class="tier feat rv">
+            <div class="info"><span class="badge-best">Best value, save £14.98</span><h4>The Bundle, all three</h4><p>Digital and printed enhancement, plus the Future Baby Pic</p></div>
+            <div class="right"><span class="pr">£29.99</span><a href="https://buy.stripe.com/test_eVq4gz9Lq8Gyf8t4E17ok0m" class="buy">Buy now</a></div>
+          </div>
         </div>
-        <p class="deadline rv">Launch price for our first 500 UK orders. 312 claimed so far.</p>
-        <ul class="bonuslist rv">
-          <li>Optional future baby glimpse included</li>
-          <li>High-res digital copy to share on Instagram and the family group chat</li>
-          <li>Free preview before you pay a thing</li>
-        </ul>
-        <a href="#start" class="btn mag rv">See your baby's face for free</a>
-        <div class="guarantee rv">100% money-back happiness guarantee. If your portrait doesn't melt your heart, you get every penny back.</div>
-        <p class="logistics rv"><b>What you get:</b> an A4 (8x12 inch) giclée print on 250gsm matte fine-art paper, in a solid oak or white wood frame (your pick at checkout). Free UK delivery, posted within 3 to 5 working days of you approving the preview. Order early to land it in time for the baby shower.</p>
+        <div class="guarantee rv">100% money-back happiness guarantee. If your enhanced image doesn't melt your heart, you get every penny back.</div>
+        <p class="logistics rv"><b>Delivery:</b> digital images arrive within 24 hours of us receiving your scan. Printed orders are an A4 (8x12 inch) giclée print on 250gsm fine-art paper in a solid oak or white wood frame, posted free across the UK within 3 to 5 working days.</p>
       </div>
     </div>
   </div>
@@ -504,14 +507,14 @@ footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
   <div class="wrap">
     <h2 class="sec-head rv" style="text-align:center">Questions, answered.</h2>
     <div class="acc">
-      <div class="acc-item"><button class="acc-q">How long does it take?<span class="mk">+</span></button><div class="acc-a"><p>Your free digital preview lands within 24 hours. Once you're happy, the framed print is posted and usually arrives within 3 to 5 working days.</p></div></div>
-      <div class="acc-item"><button class="acc-q">Is this actually accurate?<span class="mk">+</span></button><div class="acc-a"><p>We work from the real features in your scan, so the portrait is based on your baby, not a stock face. The future baby image is a fun, gentle imagining and we're honest that it's for the feels, not a forecast.</p></div></div>
-      <div class="acc-item"><button class="acc-q">What if I don't like it?<span class="mk">+</span></button><div class="acc-a"><p>You see a free preview before paying. And even after, if you're not happy we'll refund you fully. No awkward emails, no fuss.</p></div></div>
-      <div class="acc-item"><button class="acc-q">My scan is really blurry, will it still work?<span class="mk">+</span></button><div class="acc-a"><p>That's exactly what we're built for. Most scans we get are grey and hard to read. The blurrier the start, the bigger the moment when you see the result.</p></div></div>
+      <div class="acc-item"><button class="acc-q">How long does it take?<span class="mk">+</span></button><div class="acc-a"><p>Your enhanced digital image arrives within 24 hours of us receiving your scan. If you order a print, the framed copy is posted and usually arrives within 3 to 5 working days.</p></div></div>
+      <div class="acc-item"><button class="acc-q">Is this actually accurate?<span class="mk">+</span></button><div class="acc-a"><p>Our AI imaging enhances the real features captured in your scan, so the result is based on your baby's own scan data, not a generic stock face. The Future Baby Pic is an AI projection for fun, and we're honest that it's for the feels, not a forecast.</p></div></div>
+      <div class="acc-item"><button class="acc-q">What if I don't like it?<span class="mk">+</span></button><div class="acc-a"><p>You're covered by our money-back guarantee. If your enhanced image doesn't melt your heart, just tell us and we'll refund you in full. No awkward emails, no fuss.</p></div></div>
+      <div class="acc-item"><button class="acc-q">My scan is really blurry, will it still work?<span class="mk">+</span></button><div class="acc-a"><p>That's exactly what the technology is built for. Most scans we get are grey and hard to read. The AI enhances low-clarity scans, and the blurrier the start, the bigger the difference in the result.</p></div></div>
       <div class="acc-item"><button class="acc-q">Can I send more than one scan?<span class="mk">+</span></button><div class="acc-a"><p>Yes. If you have a few scans, send your clearest one and we'll let you know if another would work better.</p></div></div>
       <div class="acc-item"><button class="acc-q">Can I order this as a gift?<span class="mk">+</span></button><div class="acc-a"><p>Loads of grandparents-to-be do exactly that. Just upload the scan the parents shared with you and we'll handle the rest. Add a gift note at checkout.</p></div></div>
       <div class="acc-item"><button class="acc-q">Is my scan kept private?<span class="mk">+</span></button><div class="acc-a"><p>Always. Your images are yours. We never share them and you can ask us to delete everything once your order's done.</p></div></div>
-      <div class="acc-item"><button class="acc-q">What sizes do the prints come in?<span class="mk">+</span></button><div class="acc-a"><p>Each portrait comes framed as an A4 (8x12 inch) print, ready for the nursery wall, with the digital file included so you can print more or share online.</p></div></div>
+      <div class="acc-item"><button class="acc-q">What sizes do the prints come in?<span class="mk">+</span></button><div class="acc-a"><p>Each printed image comes framed as an A4 (8x12 inch) print, ready for the nursery wall, with the digital file included so you can print more or share online.</p></div></div>
     </div>
   </div>
 </section>
@@ -524,7 +527,7 @@ footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
         <h2>Ready to see that little face?</h2>
         <p class="privacy">Your scan stays private, always. We never share your images and you can ask us to delete everything once your order is done.</p>
       </div>
-      <div><a href="#start" class="btn mag">See your baby's face free</a></div>
+      <div><a href="#pricing" class="btn mag">Get your enhanced scan</a></div>
     </div>
     <div class="fbtm">
       <div class="flinks">
@@ -534,12 +537,12 @@ footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
         <span class="badge">VISA</span><span class="badge">MASTERCARD</span><span class="badge">AMEX</span><span class="badge">STRIPE SECURE</span>
       </div>
     </div>
-    <p class="disclaimer">Not a medical service. Scan to Baby portraits are artistic keepsakes created from your ultrasound image. They are not diagnostic, do not predict your baby's appearance or health, and should never replace medical advice or imaging from your care team. The future baby image is a playful imagining only.</p>
+    <p class="disclaimer">Scan to Baby uses AI image-enhancement technology to create keepsake images from your ultrasound. It is not a medical or diagnostic service, does not predict your baby's appearance or health, and should never replace medical advice or imaging from your care team. The Future Baby Pic is an AI projection for entertainment only.</p>
     <p class="copy">Scan to Baby Studio Ltd, registered in England &amp; Wales, company no. 14820391. Registered office: 12 Paper Mill Lane, Manchester, M3 4LZ. hello@scantobaby.co.uk</p>
   </div>
 </footer>
 
-<a href="#start" class="float-cta" id="floatcta">Free preview</a>
+<a href="#pricing" class="float-cta" id="floatcta">Get yours</a>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
