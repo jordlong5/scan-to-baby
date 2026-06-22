@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scan to Baby, Meet your baby before you meet your baby</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Nunito+Sans:wght@400;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF6F2;
+  --surface:#FFFFFF;
+  --deep:#2E2A2D;
+  --text:#3A3236;
+  --muted:#8A7E83;
+  --rose:#E8A1B5;
+  --rose-deep:#C06A85;
+  --sage:#9DC4C2;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Nunito Sans',sans-serif;
+  font-size:1.125rem;
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+.grain{
+  position:fixed;inset:0;z-index:9998;pointer-events:none;
+  opacity:.05;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+h1,h2,h3.fr{font-family:'Fraunces',serif}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 6vw}
+.eyebrow{
+  font-size:.78rem;text-transform:uppercase;letter-spacing:.22em;
+  color:var(--rose-deep);font-weight:700;
+}
+.hand{font-family:'Caveat',cursive;color:var(--rose-deep);}
+
+/* custom cursor */
+.cursor{position:fixed;top:0;left:0;width:24px;height:24px;border:1.5px solid var(--rose-deep);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-radius .25s,background .25s;mix-blend-mode:multiply}
+.cursor.bracket{width:46px;height:46px;border-radius:4px;border-color:var(--sage);background:transparent}
+.cursor .lbl{position:absolute;top:100%;left:50%;transform:translateX(-50%);font-family:'Caveat',cursive;font-size:1rem;color:var(--sage);white-space:nowrap;opacity:0;transition:opacity .2s}
+.cursor.bracket .lbl{opacity:1}
+@media(hover:none){.cursor{display:none}}
+
+/* reveal */
+.rv{opacity:1;transform:none}
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+
+/* portrait images */
+.portrait-img{transition:filter 1.1s var(--ease),transform .6s var(--ease)}
+.js .portrait-img.focusing{filter:blur(14px) saturate(.4) brightness(1.05)}
+@media(prefers-reduced-motion:reduce){.js .portrait-img.focusing{filter:none}}
+
+/* nav */
+header.nav{position:fixed;top:0;left:0;width:100%;z-index:200;padding:18px 6vw;display:flex;justify-content:space-between;align-items:center;mix-blend-mode:normal;transition:background .4s,padding .4s}
+header.nav.scrolled{background:rgba(251,246,242.9);backdrop-filter:blur(8px);padding:12px 6vw;border-bottom:1px solid rgba(58,50,54.08)}
+.logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.35rem;letter-spacing:-.01em}
+.logo b{color:var(--sage)}
+.nav-cta{font-size:.85rem;font-weight:700;padding:9px 18px;border:1.5px solid var(--rose-deep);border-radius:30px;color:var(--rose-deep);text-decoration:none;transition:.3s}
+.nav-cta:hover{background:var(--rose-deep);color:#fff}
+
+/* hero */
+.hero{padding:160px 0 80px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.7fr 1fr;gap:30px;align-items:end}
+.hero h1{font-weight:600;font-size:clamp(3.2rem,8vw,7rem);line-height:.95;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;font-weight:500;color:var(--rose-deep)}
+.hero .sub{margin-top:28px;max-width:54ch;color:var(--text);font-size:1.15rem}
+.hero-eyebrow{margin-bottom:24px}
+.cta-row{margin-top:36px;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.btn{display:inline-block;background:var(--rose);color:#fff;font-weight:700;font-family:'Nunito Sans';padding:17px 34px;border-radius:40px;text-decoration:none;font-size:1.05rem;transition:background .3s,transform .3s;border:none;cursor:pointer}
+.btn:hover{background:var(--rose-deep);transform:translateY(-2px)}
+.txtlink{font-weight:700;text-decoration:none;border-bottom:1.5px solid var(--text);padding-bottom:2px;transition:.3s}
+.txtlink:hover{color:var(--rose-deep);border-color:var(--rose-deep)}
+.hero-art{position:relative}
+.oval{position:relative;width:100%;aspect-ratio:3/4;border-radius:50% 50% 48% 48%/55% 55% 45% 45%;overflow:hidden;box-shadow:0 30px 70px -30px rgba(58,50,54.4),inset 0 0 0 8px rgba(255,255,255.6);border:1px solid rgba(58,50,54.1)}
+.oval .portrait-img{width:100%;height:100%;object-fit:cover}
+.focus-ring{position:absolute;inset:-14px;border-radius:50%;border:2px solid var(--sage);opacity:0;pointer-events:none}
+.js .focus-ring.pulse{animation:ring 1.3s var(--ease) .4s 1 forwards}
+@keyframes ring{0%{opacity:0;transform:scale(1.08)}30%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(.97)}}
+.hero-arrow{position:absolute;left:-90px;bottom:60px;width:120px;color:var(--rose-deep);transition:transform .4s}
+.cta-row:hover ~ .hero-art .hero-arrow.hero-art:hover .hero-arrow{transform:translateX(4px)}
+.cap-here{position:absolute;bottom:-30px;right:10px;font-family:'Caveat';font-size:1.4rem;color:var(--rose-deep);transform:rotate(-4deg)}
+
+.brackets{color:var(--sage);font-family:'Fraunces';font-weight:600}
+
+/* photo placeholders rendered as illustrative SVG portraits */
+.ph-scan{background:linear-gradient(135deg,#d8d2cf,#bcb4b0)}
+.ph-baby{background:radial-gradient(circle at 50% 38%,#f7d9c9,#e8b89e 60%,#caa088)}
+.ph-toddler{background:radial-gradient(circle at 50% 40%,#f6d6c5,#dca98c 65%,#b8876a)}
+
+/* inline form */
+.startform{background:var(--surface);border:1px solid rgba(58,50,54.1);border-radius:20px;padding:34px;max-width:560px;box-shadow:0 20px 50px -30px rgba(58,50,54.4)}
+.startform h3{font-size:1.6rem;font-weight:600;margin-bottom:6px}
+.startform p.note{color:var(--muted);font-size:.95rem;margin-bottom:22px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.82rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.field input{width:100%;padding:14px 16px;border:1.5px solid rgba(58,50,54.18);border-radius:12px;font-family:inherit;font-size:1rem;background:var(--bg);color:var(--text)}
+.field input:focus{outline:none;border-color:var(--sage)}
+.field input[type=file]{padding:11px;background:#fff}
+.startform .btn{width:100%;text-align:center}
+.formnote{margin-top:14px;font-size:.85rem;color:var(--muted);text-align:center}
+.formnote b{color:var(--rose-deep)}
+
+/* section base */
+section{position:relative}
+.sec-head{font-size:clamp(2rem,4vw,3.4rem);font-weight:500;letter-spacing:-.01em;line-height:1.05}
+.sec-pad{padding:100px 0}
+
+/* slider */
+.proof{padding:90px 0;background:#fff;border-top:1px solid rgba(58,50,54.07);border-bottom:1px solid rgba(58,50,54.07)}
+.proof-head{text-align:center;margin-bottom:14px}
+.slider{position:relative;max-width:760px;margin:30px auto 0;aspect-ratio:4/3;border-radius:14px;overflow:hidden;cursor:ew-resize;box-shadow:0 30px 70px -40px rgba(58,50,54,.5);user-select:none;touch-action:none}
+.slider .layer{position:absolute;inset:0}
+.slider .after{z-index:1}
+.slider .before{z-index:2;clip-path:inset(0 50% 0 0)}
+.slimg{width:100%;height:100%;object-fit:cover;display:block}
+.handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;z-index:5;transform:translateX(-50%);pointer-events:none;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.handle::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:#fff;border:2px solid var(--sage);box-shadow:0 4px 14px rgba(0,0,0.2)}
+.handle::after{content:'‹ ›';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--sage);font-size:1.3rem;font-weight:700}
+.slider-cap{text-align:center;font-family:'Caveat';font-size:1.5rem;color:var(--rose-deep);margin-top:18px}
+.slabel{position:absolute;bottom:12px;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#fff;background:rgba(0,0,0.35);padding:5px 12px;border-radius:30px;z-index:6}
+.slabel.l{left:14px}.slabel.r{right:14px}
+
+/* value props */
+.props{padding:110px 0}
+.prop{background:var(--surface);border:1px solid rgba(58,50,54.09);border-radius:16px;padding:36px;max-width:430px;box-shadow:0 22px 50px -34px rgba(58,50,54.4);position:relative}
+.prop h3{font-size:1.5rem;font-weight:600;margin:14px 0 10px}
+.prop p{color:var(--text);font-size:1.02rem}
+.prop svg{width:42px;height:42px;color:var(--sage)}
+.prop:nth-child(1){margin-left:0;transform:rotate(-1.5deg)}
+.prop:nth-child(2){margin-left:auto;margin-top:-30px;transform:rotate(1deg)}
+.prop:nth-child(3){margin-left:6vw;margin-top:24px;transform:rotate(1deg)}
+.prop:nth-child(4){margin-left:auto;margin-right:4vw;margin-top:-10px;transform:rotate(-1deg)}
+
+/* how it works filmstrip */
+.how{padding:100px 0;position:relative}
+.film{position:relative;max-width:780px;margin:50px auto 0;border-left:3px dashed rgba(58,50,54.12);border-right:3px dashed rgba(58,50,54.12);padding:0 50px}
+.sprockets{position:absolute;top:0;bottom:0;width:18px;display:flex;flex-direction:column;gap:30px;justify-content:space-around;padding:20px 0}
+.sprockets.l{left:8px}.sprockets.r{right:8px}
+.sprockets span{width:14px;height:18px;background:var(--bg);border:1.5px solid rgba(58,50,54.18);border-radius:3px}
+.frame{display:grid;grid-template-columns:90px 1fr 200px;gap:24px;align-items:center;padding:34px 0;border-bottom:1px solid rgba(58,50,54.08)}
+.frame:last-child{border-bottom:none}
+.frame .num{font-family:'Fraunces';font-size:4rem;font-weight:600;color:var(--rose);line-height:1;margin-left:-30px}
+.frame h3{font-size:1.55rem;font-weight:600;margin-bottom:6px}
+.frame .filmimg{width:200px;aspect-ratio:1;border-radius:10px;overflow:hidden;box-shadow:0 14px 34px -18px rgba(58,50,54.5)}
+.frame .filmimg .portrait-img{width:100%;height:100%}
+
+/* dark band future */
+.future{background:var(--deep);color:#F4ECE6;padding:130px 0;text-align:center;position:relative;overflow:hidden}
+.future .oval2{width:300px;max-width:60vw;aspect-ratio:3/4;margin:0 auto 40px;border-radius:50% 50% 48% 48%/55% 55% 45% 45%;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0.7),inset 0 0 0 8px rgba(255,255,255.08);position:relative}
+.future .oval2 .portrait-img{width:100%;height:100%}
+.future .line{font-family:'Fraunces';font-style:italic;font-size:clamp(1.8rem,4vw,3rem);font-weight:400;max-width:18ch;margin:0 auto;line-height:1.2}
+.marquee{margin-top:60px;overflow:hidden;white-space:nowrap;opacity:.22}
+.marquee div{display:inline-block;font-family:'Caveat';font-size:2.4rem;animation:scrollm 26s linear infinite}
+@keyframes scrollm{to{transform:translateX(-50%)}}
+
+/* testimonials */
+.testi{padding:120px 0}
+.rating{text-align:center;margin-bottom:60px}
+.rating .stars{color:var(--rose);font-size:1.4rem;letter-spacing:3px}
+.rating .num{font-family:'Fraunces';font-size:2.2rem;font-weight:600}
+.rating p{color:var(--muted);font-size:.95rem}
+.quote{max-width:760px;margin:0 auto 70px;position:relative}
+.quote:nth-child(odd){margin-left:0}
+.quote:nth-child(even){margin-left:auto;margin-right:0;text-align:right}
+.quote q{font-family:'Fraunces';font-style:italic;font-size:clamp(1.5rem,2.8vw,2.4rem);font-weight:400;line-height:1.25;display:block}
+.quote .who{margin-top:18px;font-size:1rem}
+.quote .who b{font-weight:700;position:relative;display:inline-block}
+.quote .who svg{display:block;width:130px;height:10px;color:var(--rose);margin-top:2px}
+.quote .scrib{stroke-dasharray:200;stroke-dashoffset:200}
+.js .quote.in .scrib{transition:stroke-dashoffset 1s var(--ease) .3s;stroke-dashoffset:0}
+.quote .det{color:var(--muted);font-size:.92rem}
+
+/* offer */
+.offer{padding:110px 0;background:#fff;border-top:1px solid rgba(58,50,54.07)}
+.offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.nursery{position:relative;background:linear-gradient(180deg,#f3ebe5,#ece1d9);border-radius:16px;padding:60px 40px;box-shadow:inset 0 0 0 1px rgba(58,50,54.06)}
+.nursery .wallframe{width:62%;margin:0 auto;background:#fff;padding:14px;border-radius:6px;box-shadow:0 24px 50px -22px rgba(58,50,54.55),0 2px 0 rgba(58,50,54.1)}
+.nursery .wallframe .innerframe{border:1px solid rgba(58,50,54.1);padding:10px}
+.nursery .wallframe .portrait-img{width:100%;aspect-ratio:3/4}
+.nursery .nail{width:8px;height:8px;background:#6b5d54;border-radius:50%;margin:0 auto 6px;box-shadow:0 2px 3px rgba(0,0,0.3)}
+.gallery-label{margin-top:30px;text-align:center;font-size:.9rem;color:var(--muted);font-family:'Caveat',cursive;font-size:1.3rem}
+.offer h2{font-size:clamp(2rem,4vw,3rem);font-weight:500;line-height:1.05;margin-bottom:18px}
+.price{display:flex;align-items:baseline;gap:16px;margin:24px 0}
+.price .now{font-family:'Fraunces';font-size:3.4rem;font-weight:600}
+.price .was{color:var(--muted);text-decoration:line-through;font-size:1.4rem}
+.deadline{font-size:.92rem;color:var(--rose-deep);font-weight:700;margin-bottom:24px}
+.bonuslist{list-style:none;margin:24px 0}
+.bonuslist li{padding-left:30px;position:relative;margin-bottom:12px;font-size:1.02rem}
+.bonuslist li::before{content:'[ ]';position:absolute;left:0;color:var(--sage);font-family:'Fraunces';font-weight:600}
+.logistics{margin-top:22px;font-size:.95rem;color:var(--muted);border-top:1px solid rgba(58,50,54.1);padding-top:18px}
+.guarantee{background:var(--bg);border-radius:12px;padding:18px 20px;font-size:.95rem;margin-top:24px;border:1px dashed rgba(157,196,194.6)}
+
+/* faq */
+.faq{padding:110px 0}
+.acc{max-width:780px;margin:40px auto 0}
+.acc-item{border-bottom:1px solid rgba(58,50,54.13)}
+.acc-q{width:100%;text-align:left;background:none;border:none;font-family:'Fraunces';font-size:1.25rem;font-weight:500;color:var(--text);padding:24px 40px 24px 0;cursor:pointer;position:relative;display:flex;justify-content:space-between;gap:20px}
+.acc-q .mk{color:var(--sage);font-weight:700;transition:transform .3s;flex-shrink:0}
+.acc-item.open .acc-q .mk{transform:rotate(45deg)}
+.acc-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease);color:var(--text)}
+.acc-a p{padding:0 0 24px;max-width:62ch}
+
+/* footer */
+footer{background:var(--deep);color:#cdbfb8;padding:90px 0 40px}
+footer .ftop{display:grid;grid-template-columns:1.4fr 1fr;gap:50px;align-items:center;border-bottom:1px solid rgba(255,255,255.1);padding-bottom:50px}
+footer h2{color:#F4ECE6;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:500;line-height:1.1}
+footer .privacy{font-size:.95rem;max-width:46ch;margin-top:14px}
+footer .fbtm{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-top:40px;font-size:.85rem}
+footer .flinks a{margin-right:18px;text-decoration:none;color:#cdbfb8;border-bottom:1px solid transparent}
+footer .flinks a:hover{border-color:#cdbfb8}
+footer .badges{display:flex;gap:8px;align-items:center}
+footer .badge{background:rgba(255,255,255.1);border-radius:6px;padding:6px 12px;font-size:.72rem;font-weight:700;letter-spacing:.05em}
+footer .disclaimer{margin-top:30px;font-size:.78rem;color:#8a7e7a;max-width:80ch;line-height:1.6}
+footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
+
+/* floating cta */
+.float-cta{position:fixed;bottom:24px;right:24px;z-index:300;background:var(--rose-deep);color:#fff;padding:14px 26px;border-radius:40px;font-weight:700;text-decoration:none;box-shadow:0 16px 36px -12px rgba(192,106,133.7);font-size:.95rem;opacity:0;transform:translateY(20px);transition:.4s;pointer-events:none}
+.float-cta.show{opacity:1;transform:none;pointer-events:auto}
+.float-cta:hover{background:#a8546c}
+
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:50px}
+  .hero-art{max-width:340px}
+  .hero-arrow{display:none}
+  .offer-grid,footer .ftop{grid-template-columns:1fr}
+  .frame{grid-template-columns:60px 1fr;gap:14px}
+  .frame .filmimg{display:none}
+  .frame .num{margin-left:0;font-size:3rem}
+  .prop{margin:0 0 24px!important;transform:none!important;max-width:100%}
+  .quote:nth-child(even){text-align:left}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="cursor" id="cursor"><span class="lbl">see clearer</span></div>
+
+<header class="nav" id="nav">
+  <div class="logo">Scan to <b>Baby</b></div>
+  <a href="#start" class="nav-cta">Free preview</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow hero-eyebrow rv">For first-time mums, proud dads and grandparents-to-be</div>
+        <h1 class="rv">Meet your baby before you <em>meet your baby</em></h1>
+        <p class="sub rv">Send us your ultrasound and we'll bring out the little face hiding in it. You get a free preview first, no card needed. Love it? We print it, frame it and post it to your door.</p>
+        <div class="cta-row rv">
+          <a href="#start" class="btn mag">See your baby's face free</a>
+          <a href="#how" class="txtlink">How it works</a>
+        </div>
+      </div>
+      <div class="hero-art rv">
+        <div class="oval">
+          <svg class="portrait-img focusing" data-focus viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="g1" cx="50%" cy="38%" r="65%"><stop offset="0%" stop-color="#fbe3d4"/><stop offset="60%" stop-color="#e9bb9e"/><stop offset="100%" stop-color="#c79277"/></radialGradient>
+            </defs>
+            <rect width="300" height="400" fill="url(#g1)"/>
+            <ellipse cx="150" cy="170" rx="78" ry="92" fill="#f6d2bd"/>
+            <ellipse cx="124" cy="160" rx="9" ry="11" fill="#5b4338"/>
+            <ellipse cx="176" cy="160" rx="9" ry="11" fill="#5b4338"/>
+            <ellipse cx="124" cy="156" rx="3" ry="3" fill="#fff" opacity=".7"/>
+            <ellipse cx="176" cy="156" rx="3" ry="3" fill="#fff" opacity=".7"/>
+            <path d="M138 192 Q150 200 162 192" stroke="#c08368" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <ellipse cx="150" cy="178" rx="9" ry="6" fill="#e7a98a"/>
+            <path d="M118 132 Q150 110 182 132" stroke="#b8876a" stroke-width="3" fill="none" opacity=".4"/>
+          </svg>
+          <div class="focus-ring pulse"></div>
+        </div>
+        <svg class="hero-arrow" viewBox="0 0 120 80" fill="none">
+          <path d="M5 70 Q40 75 70 45 Q95 22 110 12" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M110 12 L98 16 M110 12 L106 25" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span class="cap-here">she's real</span>
+      </div>
+    </div>
+
+    <!-- inline start form -->
+    <div id="start" style="margin-top:80px">
+      <div class="startform rv">
+        <h3>Start with a free preview</h3>
+        <p class="note">Upload your scan and your email. We'll send your free portrait preview within 24 hours. No card, no commitment.</p>
+        <form onsubmit="return showThanks(event)">
+          <div class="field">
+            <label for="em">Your email</label>
+            <input type="email" id="em" required placeholder="you@email.com">
+          </div>
+          <div class="field">
+            <label for="sc">Your ultrasound photo</label>
+            <input type="file" id="sc" accept="image/*">
+          </div>
+          <button class="btn mag" type="submit">Send me my free preview</button>
+        </form>
+        <p class="formnote" id="thanks" style="display:none"><b>Thank you.</b> Your scan is on its way to our studio. Watch your inbox within 24 hours. You only pay if you love it.</p>
+        <p class="formnote">Free preview first. <b>You pay nothing</b> until you've seen your baby's face and said yes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF SLIDER -->
+<section class="proof">
+  <div class="wrap">
+    <div class="proof-head">
+      <div class="eyebrow rv">Drag to reveal</div>
+      <h2 class="sec-head rv" style="margin-top:8px">From grey blur to your baby's face.</h2>
+    </div>
+    <div class="slider" id="slider">
+      <div class="layer after">
+        <svg class="slimg" viewBox="0 0 760 570" preserveAspectRatio="xMidYMid slice">
+          <defs><radialGradient id="sba" cx="50%" cy="40%" r="62%"><stop offset="0%" stop-color="#fbe6d6"/><stop offset="60%" stop-color="#edbd9d"/><stop offset="100%" stop-color="#cd9676"/></radialGradient></defs>
+          <rect width="760" height="570" fill="url(#sba)"/>
+          <ellipse cx="380" cy="250" rx="172" ry="200" fill="#f7d4bf"/>
+          <ellipse cx="322" cy="232" rx="19" ry="23" fill="#5b4338"/>
+          <ellipse cx="438" cy="232" rx="19" ry="23" fill="#5b4338"/>
+          <ellipse cx="316" cy="224" rx="6" ry="6" fill="#fff" opacity=".75"/>
+          <ellipse cx="432" cy="224" rx="6" ry="6" fill="#fff" opacity=".75"/>
+          <ellipse cx="380" cy="270" rx="18" ry="12" fill="#e7a98a"/>
+          <path d="M340 300 Q380 322 420 300" stroke="#c08368" stroke-width="8" fill="none" stroke-linecap="round"/>
+          <path d="M250 150 Q380 90 510 150 Q540 190 500 215 Q380 150 260 215 Q220 190 250 150 Z" fill="#7a5a44" opacity=".5"/>
+        </svg>
+        <span class="slabel r">After</span>
+      </div>
+      <div class="layer before" id="before">
+        <svg class="slimg" viewBox="0 0 760 570" preserveAspectRatio="xMidYMid slice">
+          <defs><filter id="blur"><feGaussianBlur stdDeviation="9"/></filter></defs>
+          <rect width="760" height="570" fill="#b9b1ac"/>
+          <g filter="url(#blur)" opacity=".92">
+            <ellipse cx="380" cy="250" rx="170" ry="198" fill="#9d948f"/>
+            <ellipse cx="380" cy="240" rx="120" ry="150" fill="#aaa099"/>
+            <ellipse cx="330" cy="230" rx="22" ry="26" fill="#7d756f"/>
+            <ellipse cx="430" cy="230" rx="22" ry="26" fill="#7d756f"/>
+            <path d="M250 360 Q380 420 510 360" stroke="#8a817b" stroke-width="14" fill="none"/>
+          </g>
+          <rect width="760" height="570" fill="#000" opacity=".06"/>
+        </svg>
+        <span class="slabel l">Before</span>
+      </div>
+      <div class="handle" id="handle"></div>
+    </div>
+    <p class="slider-cap">drag the handle, same scan, two worlds</p>
+  </div>
+</section>
+
+<!-- VALUE PROPS -->
+<section class="props">
+  <div class="wrap">
+    <h2 class="sec-head rv" style="margin-bottom:50px;max-width:18ch">Small details, big feelings.</h2>
+    <div class="prop rv">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M24 6 L27 19 L40 22 L27 25 L24 38 L21 25 L8 22 L21 19 Z" stroke-linejoin="round"/><circle cx="38" cy="10" r="2"/><circle cx="10" cy="36" r="1.5"/></svg>
+      <h3>From grey blur to real face</h3>
+      <p>Your scan is precious but you can barely make it out. We bring out the soft features hiding in that photo so you can finally see your little one.</p>
+    </div>
+    <div class="prop rv">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="8" y="10" width="32" height="28" rx="2"/><rect x="13" y="15" width="22" height="18" rx="1"/><circle cx="24" cy="24" r="4"/></svg>
+      <h3>A real print, not just a file</h3>
+      <p>Most services email you a JPEG and call it done. We post you a proper framed print for the nursery, plus the digital copy to share.</p>
+    </div>
+    <div class="prop rv">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 24 Q24 8 42 24 Q24 40 6 24 Z"/><circle cx="24" cy="24" r="6"/></svg>
+      <h3>Preview before you pay</h3>
+      <p>See your portrait first. If it doesn't give you goosebumps, you don't pay a penny. Simple as that.</p>
+    </div>
+    <div class="prop rv">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M24 40 C8 28 8 14 18 14 C22 14 24 18 24 18 C24 18 26 14 30 14 C40 14 40 28 24 40 Z" stroke-linejoin="round"/><path d="M4 24 L14 24 L17 18 L21 30 L24 24 L34 24" stroke-linecap="round"/></svg>
+      <h3>A glimpse of the future too</h3>
+      <p>Add an optional future baby picture, a gentle imagining of how your child might look as a toddler. Tearjerker guaranteed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div style="text-align:center">
+      <div class="eyebrow rv">How it works</div>
+      <h2 class="sec-head rv" style="margin-top:10px">Three steps. <span style="font-style:italic;font-family:Fraunces">One happy cry.</span></h2>
+      <p class="rv" style="color:var(--muted);margin-top:14px"><span id="countup">24</span> hours from upload to your free preview.</p>
+    </div>
+    <div class="film">
+      <div class="sprockets l"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="sprockets r"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="frame rv">
+        <div class="num">1</div>
+        <div><h3>Upload your scan</h3><p>Snap a photo of your ultrasound or upload the file. Takes about a minute on your phone.</p></div>
+        <div class="filmimg"><svg class="portrait-img focusing" data-focus viewBox="0 0 200 200" preserveAspectRatio="none"><rect width="200" height="200" fill="#bdb4af"/><ellipse cx="100" cy="100" rx="60" ry="70" fill="#a89f9a"/></svg></div>
+      </div>
+      <div class="frame rv">
+        <div class="num">2</div>
+        <div><h3>We work our magic</h3><p>Our artists turn that grainy image into a clear, lifelike portrait of your baby's face.</p></div>
+        <div class="filmimg"><svg class="portrait-img focusing" data-focus viewBox="0 0 200 200" preserveAspectRatio="none"><rect width="200" height="200" fill="#e6b89c"/><ellipse cx="100" cy="90" rx="55" ry="65" fill="#f5d2bd"/><circle cx="85" cy="85" r="6" fill="#5b4338"/><circle cx="115" cy="85" r="6" fill="#5b4338"/><path d="M88 110 Q100 118 112 110" stroke="#c08368" stroke-width="3" fill="none"/></svg></div>
+      </div>
+      <div class="frame rv">
+        <div class="num">3</div>
+        <div><h3>See it free, then choose</h3><p>We send you a free preview. Love it? Pick your keepsake. The framed print drops through your letterbox a few days later.</p></div>
+        <div class="filmimg"><svg class="portrait-img focusing" data-focus viewBox="0 0 200 200" preserveAspectRatio="none"><rect width="200" height="200" fill="#ecbd9f"/><ellipse cx="100" cy="90" rx="55" ry="65" fill="#f7d4bf"/><circle cx="85" cy="85" r="6" fill="#5b4338"/><circle cx="115" cy="85" r="6" fill="#5b4338"/><path d="M88 110 Q100 120 112 110" stroke="#c08368" stroke-width="4" fill="none"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUTURE BAND -->
+<section class="future">
+  <div class="wrap">
+    <div class="oval2 rv">
+      <svg class="portrait-img focusing" data-focus viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+        <defs><radialGradient id="gt" cx="50%" cy="40%" r="65%"><stop offset="0%" stop-color="#f7d6c5"/><stop offset="65%" stop-color="#dca98c"/><stop offset="100%" stop-color="#b8876a"/></radialGradient></defs>
+        <rect width="300" height="400" fill="url(#gt)"/>
+        <ellipse cx="150" cy="160" rx="82" ry="94" fill="#f6d6c5"/>
+        <ellipse cx="122" cy="150" rx="10" ry="12" fill="#4a352b"/>
+        <ellipse cx="178" cy="150" rx="10" ry="12" fill="#4a352b"/>
+        <path d="M132 188 Q150 200 168 188" stroke="#b87154" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M100 110 Q150 80 200 110 Q210 130 190 145 Q150 120 110 145 Q90 130 100 110 Z" fill="#7a5a44"/>
+      </svg>
+    </div>
+    <p class="line rv">And here's the one that'll get you.</p>
+    <div class="marquee"><div class="hand">she cried · he cried · they all cried · she cried · he cried · they all cried · she cried · he cried · they all cried · </div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="wrap">
+    <div class="rating rv">
+      <div class="stars">★★★★★</div>
+      <div class="num">4.9 / 5</div>
+      <p>from 2,180 verified parents and grandparents</p>
+    </div>
+    <div class="quote rv">
+      <q>I actually cried at my desk. After 12 weeks of squinting at a grey blob, suddenly there was my son's little nose. It's on the wall now.</q>
+      <div class="who"><b>Hollie M.<svg viewBox="0 0 130 10" fill="none"><path class="scrib" d="M2 6 Q30 1 60 6 Q90 11 128 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></b><span class="det">Manchester, first baby</span></div>
+    </div>
+    <div class="quote rv">
+      <q>Bought it for my daughter as a surprise. She rang me sobbing happy tears. Best gift I've ever given.</q>
+      <div class="who"><b>Sue T.<svg viewBox="0 0 130 10" fill="none"><path class="scrib" d="M2 5 Q30 9 60 4 Q90 0 128 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></b><span class="det">grandma-to-be, Leeds</span></div>
+    </div>
+    <div class="quote rv">
+      <q>The future baby pic broke us both. We keep guessing if she'll really look like that. Honestly worth every penny.</q>
+      <div class="who"><b>James &amp; Priya<svg viewBox="0 0 130 10" fill="none"><path class="scrib" d="M2 6 Q30 2 60 6 Q90 10 128 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></b><span class="det">expecting their first, Bristol</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section class="offer">
+  <div class="wrap">
+    <div class="offer-grid">
+      <div class="nursery rv">
+        <div class="nail"></div>
+        <div class="wallframe">
+          <div class="innerframe">
+            <svg class="portrait-img focusing" data-focus viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+              <defs><radialGradient id="go" cx="50%" cy="38%" r="65%"><stop offset="0%" stop-color="#fbe6d8"/><stop offset="60%" stop-color="#ecbd9f"/><stop offset="100%" stop-color="#cb9678"/></radialGradient></defs>
+              <rect width="300" height="400" fill="url(#go)"/>
+              <ellipse cx="150" cy="170" rx="80" ry="94" fill="#f7d4bf"/>
+              <ellipse cx="124" cy="160" rx="9" ry="11" fill="#5b4338"/>
+              <ellipse cx="176" cy="160" rx="9" ry="11" fill="#5b4338"/>
+              <ellipse cx="150" cy="180" rx="9" ry="6" fill="#e7a98a"/>
+              <path d="M138 196 Q150 204 162 196" stroke="#c08368" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <p class="gallery-label">framed, ready for the nursery wall</p>
+      </div>
+      <div>
+        <h2 class="rv">Your keepsake, sorted.</h2>
+        <p class="rv" style="color:var(--text)">A frame-ready portrait of your baby's face, printed and posted across the UK for free. The digital copy comes with it.</p>
+        <div class="price rv">
+          <span class="now">£29.99</span>
+          <span class="was">£45</span>
+        </div>
+        <p class="deadline rv">Launch price for our first 500 UK orders. 312 claimed so far.</p>
+        <ul class="bonuslist rv">
+          <li>Optional future baby glimpse included</li>
+          <li>High-res digital copy to share on Instagram and the family group chat</li>
+          <li>Free preview before you pay a thing</li>
+        </ul>
+        <a href="#start" class="btn mag rv">See your baby's face for free</a>
+        <div class="guarantee rv">100% money-back happiness guarantee. If your portrait doesn't melt your heart, you get every penny back.</div>
+        <p class="logistics rv"><b>What you get:</b> an A4 (8x12 inch) giclée print on 250gsm matte fine-art paper, in a solid oak or white wood frame (your pick at checkout). Free UK delivery, posted within 3 to 5 working days of you approving the preview. Order early to land it in time for the baby shower.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <h2 class="sec-head rv" style="text-align:center">Questions, answered.</h2>
+    <div class="acc">
+      <div class="acc-item"><button class="acc-q">How long does it take?<span class="mk">+</span></button><div class="acc-a"><p>Your free digital preview lands within 24 hours. Once you're happy, the framed print is posted and usually arrives within 3 to 5 working days.</p></div></div>
+      <div class="acc-item"><button class="acc-q">Is this actually accurate?<span class="mk">+</span></button><div class="acc-a"><p>We work from the real features in your scan, so the portrait is based on your baby, not a stock face. The future baby image is a fun, gentle imagining and we're honest that it's for the feels, not a forecast.</p></div></div>
+      <div class="acc-item"><button class="acc-q">What if I don't like it?<span class="mk">+</span></button><div class="acc-a"><p>You see a free preview before paying. And even after, if you're not happy we'll refund you fully. No awkward emails, no fuss.</p></div></div>
+      <div class="acc-item"><button class="acc-q">My scan is really blurry, will it still work?<span class="mk">+</span></button><div class="acc-a"><p>That's exactly what we're built for. Most scans we get are grey and hard to read. The blurrier the start, the bigger the moment when you see the result.</p></div></div>
+      <div class="acc-item"><button class="acc-q">Can I send more than one scan?<span class="mk">+</span></button><div class="acc-a"><p>Yes. If you have a few scans, send your clearest one and we'll let you know if another would work better.</p></div></div>
+      <div class="acc-item"><button class="acc-q">Can I order this as a gift?<span class="mk">+</span></button><div class="acc-a"><p>Loads of grandparents-to-be do exactly that. Just upload the scan the parents shared with you and we'll handle the rest. Add a gift note at checkout.</p></div></div>
+      <div class="acc-item"><button class="acc-q">Is my scan kept private?<span class="mk">+</span></button><div class="acc-a"><p>Always. Your images are yours. We never share them and you can ask us to delete everything once your order's done.</p></div></div>
+      <div class="acc-item"><button class="acc-q">What sizes do the prints come in?<span class="mk">+</span></button><div class="acc-a"><p>Each portrait comes framed as an A4 (8x12 inch) print, ready for the nursery wall, with the digital file included so you can print more or share online.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="ftop">
+      <div>
+        <h2>Ready to see that little face?</h2>
+        <p class="privacy">Your scan stays private, always. We never share your images and you can ask us to delete everything once your order is done.</p>
+      </div>
+      <div><a href="#start" class="btn mag">See your baby's face free</a></div>
+    </div>
+    <div class="fbtm">
+      <div class="flinks">
+        <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Refunds</a><a href="#">Contact</a>
+      </div>
+      <div class="badges">
+        <span class="badge">VISA</span><span class="badge">MASTERCARD</span><span class="badge">AMEX</span><span class="badge">STRIPE SECURE</span>
+      </div>
+    </div>
+    <p class="disclaimer">Not a medical service. Scan to Baby portraits are artistic keepsakes created from your ultrasound image. They are not diagnostic, do not predict your baby's appearance or health, and should never replace medical advice or imaging from your care team. The future baby image is a playful imagining only.</p>
+    <p class="copy">Scan to Baby Studio Ltd, registered in England &amp; Wales, company no. 14820391. Registered office: 12 Paper Mill Lane, Manchester, M3 4LZ. hello@scantobaby.co.uk</p>
+  </div>
+</footer>
+
+<a href="#start" class="float-cta" id="floatcta">Free preview</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+document.documentElement.classList.add('js');
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* native scrolling — no smooth-scroll hijack */
+
+/* nav scroll state + float cta */
+const nav=document.getElementById('nav'), floatc=document.getElementById('floatcta');
+function onScroll(){
+  const y=window.scrollY;
+  nav.classList.toggle('scrolled', y>40);
+  floatc.classList.toggle('show', y>700);
+}
+window.addEventListener('scroll',onScroll); onScroll();
+
+/* reveals */
+const rvs=document.querySelectorAll('.rv');
+const ro=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}});
+},{threshold:.15,rootMargin:'0px 0px -8% 0px'});
+rvs.forEach((el,i)=>{el.style.transitionDelay=(i%6*60)+'ms';ro.observe(el)});
+
+/* focus pull on portraits */
+const foc=document.querySelectorAll('[data-focus]');
+if(reduce){foc.forEach(f=>f.classList.remove('focusing'));}
+else{
+  // hero immediate
+  const hero=document.querySelector('.hero [data-focus]');
+  if(hero){setTimeout(()=>hero.classList.remove('focusing'),300);}
+  const fo=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('focusing');fo.unobserve(e.target)}});
+  },{threshold:.4});
+  foc.forEach(f=>{if(f!==hero)fo.observe(f)});
+}
+
+/* before/after slider (pointer events, mouse + touch) */
+const slider=document.getElementById('slider');
+if(slider){
+  const handle=document.getElementById('handle');
+  const before=document.getElementById('before');
+  let dragging=false;
+  function setPos(clientX){
+    const r=slider.getBoundingClientRect();
+    let p=(clientX-r.left)/r.width; p=Math.max(0,Math.min(1,p));
+    before.style.clipPath='inset(0 '+((1-p)*100)+'% 0 0)';
+    handle.style.left=(p*100)+'%';
+  }
+  slider.addEventListener('pointerdown',e=>{dragging=true;try{slider.setPointerCapture(e.pointerId)}catch(_){}; setPos(e.clientX)});
+  slider.addEventListener('pointermove',e=>{if(dragging)setPos(e.clientX)});
+  slider.addEventListener('pointerup',()=>dragging=false);
+  slider.addEventListener('pointercancel',()=>dragging=false);
+  const r0=slider.getBoundingClientRect(); setPos(r0.left+r0.width*0.5);
+}
+
+/* count up */
+const cu=document.getElementById('countup');
+const cuo=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){
+    let n=0; const iv=setInterval(()=>{n+=1;cu.textContent=n;if(n>=24){clearInterval(iv)}},38);
+    cuo.unobserve(e.target);
+  }});
+},{threshold:.6});
+cuo.observe(cu);
+
+/* accordion */
+document.querySelectorAll('.acc-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const it=q.parentElement, a=it.querySelector('.acc-a');
+    const open=it.classList.contains('open');
+    document.querySelectorAll('.acc-item.open').forEach(o=>{o.classList.remove('open');o.querySelector('.acc-a').style.maxHeight=null});
+    if(!open){it.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
+  });
+});
+
+/* parallax hero portrait */
+if(!reduce && window.gsap){
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.to('.hero-art .oval',{yPercent:-8,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+}
+
+/* custom cursor */
+const cursor=document.getElementById('cursor'); const lbl=cursor.querySelector('.lbl');
+let cx=window.innerWidth/2, cy=window.innerHeight/2, tx=cx, ty=cy;
+window.addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY});
+function curRaf(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;cursor.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;requestAnimationFrame(curRaf)}
+curRaf();
+document.querySelectorAll('.oval,.slider,.filmimg,.oval2,.wallframe').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.classList.add('bracket');lbl.textContent=el.classList.contains('slider')?'drag':'see clearer'});
+  el.addEventListener('mouseleave',()=>cursor.classList.remove('bracket'));
+});
+
+/* magnetic buttons */
+if(!reduce){
+  document.querySelectorAll('.mag').forEach(b=>{
+    b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();const mx=e.clientX-r.left-r.width/2;const my=e.clientY-r.top-r.height/2;b.style.transform=`translate(${mx*.25}px,${my*.35}px)`});
+    b.addEventListener('mouseleave',()=>b.style.transform='');
+  });
+}
+
+/* form */
+function showThanks(e){
+  e.preventDefault();
+  document.getElementById('thanks').style.display='block';
+  e.target.reset();
+  return false;
+}
+
+/* native anchor scrolling */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',ev=>{
+    const id=a.getAttribute('href'); if(id.length<2)return;
+    const t=document.querySelector(id); if(!t)return;
+    ev.preventDefault();
+    t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+<script>(function(){function fix(){document.querySelectorAll('section,header,footer,main,h1,h2,h3,h4,p,li,blockquote').forEach(function(e){try{var cs=getComputedStyle(e);var idc=((e.className&&e.className.toString?e.className.toString():'')+' '+(e.id||'')).toLowerCase();if(/cursor|overlay|modal|menu|backdrop|tooltip|drawer|popover|lightbox/.test(idc))return;if(parseFloat(cs.opacity)===0)e.style.setProperty('opacity','1','important');if(cs.visibility==='hidden')e.style.visibility='visible';}catch(_){}});}window.addEventListener('DOMContentLoaded',function(){setTimeout(fix,1700)});window.addEventListener('load',function(){setTimeout(fix,2300)});})();</script></body>
+</html>
