@@ -59,6 +59,7 @@ a{color:inherit}
 
 /* portrait images */
 .portrait-img{transition:filter 1.1s var(--ease),transform .6s var(--ease)}
+img.portrait-img{object-fit:cover;display:block}
 .js .portrait-img.focusing{filter:blur(14px) saturate(.4) brightness(1.05)}
 @media(prefers-reduced-motion:reduce){.js .portrait-img.focusing{filter:none}}
 
@@ -322,20 +323,7 @@ footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
       </div>
       <div class="hero-art rv">
         <div class="oval">
-          <svg class="portrait-img focusing" data-focus viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <radialGradient id="g1" cx="50%" cy="38%" r="65%"><stop offset="0%" stop-color="#fbe3d4"/><stop offset="60%" stop-color="#e9bb9e"/><stop offset="100%" stop-color="#c79277"/></radialGradient>
-            </defs>
-            <rect width="300" height="400" fill="url(#g1)"/>
-            <ellipse cx="150" cy="170" rx="78" ry="92" fill="#f6d2bd"/>
-            <ellipse cx="124" cy="160" rx="9" ry="11" fill="#5b4338"/>
-            <ellipse cx="176" cy="160" rx="9" ry="11" fill="#5b4338"/>
-            <ellipse cx="124" cy="156" rx="3" ry="3" fill="#fff" opacity=".7"/>
-            <ellipse cx="176" cy="156" rx="3" ry="3" fill="#fff" opacity=".7"/>
-            <path d="M138 192 Q150 200 162 192" stroke="#c08368" stroke-width="4" fill="none" stroke-linecap="round"/>
-            <ellipse cx="150" cy="178" rx="9" ry="6" fill="#e7a98a"/>
-            <path d="M118 132 Q150 110 182 132" stroke="#b8876a" stroke-width="3" fill="none" opacity=".4"/>
-          </svg>
+          <img class="portrait-img focusing" data-focus src="render_portrait.jpg" alt="An enhanced 3D image of a baby's face">
           <div class="focus-ring pulse"></div>
         </div>
         <svg class="hero-arrow" viewBox="0 0 120 80" fill="none">
@@ -408,17 +396,17 @@ footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
       <div class="frame rv">
         <div class="num">1</div>
         <div><h3>Pick your image and pay</h3><p>Choose digital, printed, the Future Baby Pic or the bundle, and check out securely. Takes under a minute.</p></div>
-        <div class="filmimg"><svg class="portrait-img focusing" data-focus viewBox="0 0 200 200" preserveAspectRatio="none"><rect width="200" height="200" fill="#bdb4af"/><ellipse cx="100" cy="100" rx="60" ry="70" fill="#a89f9a"/></svg></div>
+        <div class="filmimg"><img class="portrait-img focusing" data-focus src="scan_sq.jpg" alt="An ultrasound scan"></div>
       </div>
       <div class="frame rv">
         <div class="num">2</div>
         <div><h3>Send us your scan</h3><p>Upload a photo of your ultrasound. The AI enhances even low-clarity, grainy scans.</p></div>
-        <div class="filmimg"><svg class="portrait-img focusing" data-focus viewBox="0 0 200 200" preserveAspectRatio="none"><rect width="200" height="200" fill="#e6b89c"/><ellipse cx="100" cy="90" rx="55" ry="65" fill="#f5d2bd"/><circle cx="85" cy="85" r="6" fill="#5b4338"/><circle cx="115" cy="85" r="6" fill="#5b4338"/><path d="M88 110 Q100 118 112 110" stroke="#c08368" stroke-width="3" fill="none"/></svg></div>
+        <div class="filmimg"><img class="portrait-img focusing" data-focus src="render_sq.jpg" alt="The 3D reconstruction"></div>
       </div>
       <div class="frame rv">
         <div class="num">3</div>
         <div><h3>We enhance and deliver</h3><p>Our AI imaging reconstructs your scan into a clear 3D image. The digital arrives within 24 hours; framed prints post a few days later.</p></div>
-        <div class="filmimg"><svg class="portrait-img focusing" data-focus viewBox="0 0 200 200" preserveAspectRatio="none"><rect width="200" height="200" fill="#ecbd9f"/><ellipse cx="100" cy="90" rx="55" ry="65" fill="#f7d4bf"/><circle cx="85" cy="85" r="6" fill="#5b4338"/><circle cx="115" cy="85" r="6" fill="#5b4338"/><path d="M88 110 Q100 120 112 110" stroke="#c08368" stroke-width="4" fill="none"/></svg></div>
+        <div class="filmimg"><img class="portrait-img focusing" data-focus src="render_sq.jpg" alt="Your final enhanced image"></div>
       </div>
     </div>
   </div>
@@ -468,17 +456,9 @@ footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
 <section class="future">
   <div class="wrap">
     <div class="oval2 rv">
-      <svg class="portrait-img focusing" data-focus viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
-        <defs><radialGradient id="gt" cx="50%" cy="40%" r="65%"><stop offset="0%" stop-color="#f7d6c5"/><stop offset="65%" stop-color="#dca98c"/><stop offset="100%" stop-color="#b8876a"/></radialGradient></defs>
-        <rect width="300" height="400" fill="url(#gt)"/>
-        <ellipse cx="150" cy="160" rx="82" ry="94" fill="#f6d6c5"/>
-        <ellipse cx="122" cy="150" rx="10" ry="12" fill="#4a352b"/>
-        <ellipse cx="178" cy="150" rx="10" ry="12" fill="#4a352b"/>
-        <path d="M132 188 Q150 200 168 188" stroke="#b87154" stroke-width="5" fill="none" stroke-linecap="round"/>
-        <path d="M100 110 Q150 80 200 110 Q210 130 190 145 Q150 120 110 145 Q90 130 100 110 Z" fill="#7a5a44"/>
-      </svg>
+      <img class="portrait-img focusing" data-focus src="nbB_portrait.jpg" alt="A sleeping newborn baby">
     </div>
-    <p class="line rv">And here's the one that'll get you.</p>
+    <p class="line rv">And one day soon, you'll hold them for real.</p>
     <div class="marquee"><div class="hand">she cried · he cried · they all cried · she cried · he cried · they all cried · she cried · he cried · they all cried · </div></div>
   </div>
 </section>
@@ -514,15 +494,7 @@ footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
         <div class="nail"></div>
         <div class="wallframe">
           <div class="innerframe">
-            <svg class="portrait-img focusing" data-focus viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
-              <defs><radialGradient id="go" cx="50%" cy="38%" r="65%"><stop offset="0%" stop-color="#fbe6d8"/><stop offset="60%" stop-color="#ecbd9f"/><stop offset="100%" stop-color="#cb9678"/></radialGradient></defs>
-              <rect width="300" height="400" fill="url(#go)"/>
-              <ellipse cx="150" cy="170" rx="80" ry="94" fill="#f7d4bf"/>
-              <ellipse cx="124" cy="160" rx="9" ry="11" fill="#5b4338"/>
-              <ellipse cx="176" cy="160" rx="9" ry="11" fill="#5b4338"/>
-              <ellipse cx="150" cy="180" rx="9" ry="6" fill="#e7a98a"/>
-              <path d="M138 196 Q150 204 162 196" stroke="#c08368" stroke-width="4" fill="none" stroke-linecap="round"/>
-            </svg>
+            <img class="portrait-img focusing" data-focus src="render_portrait.jpg" alt="A framed enhanced 3D image of a baby">
           </div>
         </div>
         <p class="gallery-label">framed, ready for the nursery wall</p>
