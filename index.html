@@ -130,7 +130,17 @@ section{position:relative}
 .handle::after{content:'‹ ›';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--sage);font-size:1.3rem;font-weight:700}
 .slider-cap{text-align:center;font-family:'Caveat';font-size:1.5rem;color:var(--rose-deep);margin-top:18px}
 
-/* 4-stage scrubber */
+/* before/after comparison */
+.cmp{position:relative;max-width:760px;margin:30px auto 0;aspect-ratio:4/3;border-radius:14px;overflow:hidden;cursor:ew-resize;box-shadow:0 30px 70px -40px rgba(58,50,54,.5);user-select:none;touch-action:none;background:#0e0c0d}
+.cmp .cmp-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.cmp-top{position:absolute;inset:0;clip-path:inset(0 50% 0 0);z-index:2}
+.cmp-handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;z-index:5;transform:translateX(-50%);pointer-events:none;box-shadow:0 0 0 1px rgba(0,0,0,.12)}
+.cmp-handle::after{content:'';position:absolute;top:50%;left:50%;width:48px;height:48px;border-radius:50%;background:#fff;border:2px solid var(--sage);transform:translate(-50%,-50%);box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.cmp-handle::before{content:'\2039 \203A';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--sage);font-size:1.05rem;font-weight:700;z-index:1;letter-spacing:-2px}
+.cmp-tag{position:absolute;bottom:14px;z-index:6;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:#fff;background:rgba(0,0,0,.5);padding:6px 13px;border-radius:30px;pointer-events:none}
+.cmp-tag.tl{left:14px}.cmp-tag.tr{right:14px}
+
+/* 4-stage scrubber (legacy) */
 .slider4{position:relative;max-width:760px;margin:30px auto 0;aspect-ratio:4/3;border-radius:14px;overflow:hidden;cursor:ew-resize;box-shadow:0 30px 70px -40px rgba(58,50,54,.5);user-select:none;touch-action:none;background:#0e0c0d}
 .s4img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none}
 .s4-handle{position:absolute;top:0;bottom:0;left:0;width:3px;background:#fff;z-index:6;transform:translateX(-50%);pointer-events:none;box-shadow:0 0 0 1px rgba(0,0,0,.12)}
@@ -346,18 +356,14 @@ footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
       <div class="eyebrow rv">Drag to reveal</div>
       <h2 class="sec-head rv" style="margin-top:8px">From grey scan to your baby's face.</h2>
     </div>
-    <div class="slider4" id="slider4">
-      <img class="s4img" src="stage1.jpg" alt="Your original ultrasound scan">
-      <img class="s4img" src="stage2.jpg" alt="The scan cleaned and calibrated">
-      <img class="s4img" src="stage3.jpg" alt="3D reconstruction in progress">
-      <img class="s4img" src="stage4.jpg" alt="Your final enhanced 3D image">
-      <div class="s4-label" id="s4label">Stage 1 — Your ultrasound</div>
-      <div class="s4-handle" id="s4handle"></div>
+    <div class="cmp" id="cmp">
+      <img class="cmp-img" src="stage4.jpg" alt="Your enhanced 3D image">
+      <div class="cmp-top" id="cmpTop"><img class="cmp-img" src="stage1.jpg" alt="Your original ultrasound scan"></div>
+      <span class="cmp-tag tl">Your ultrasound</span>
+      <span class="cmp-tag tr">Enhanced 3D image</span>
+      <div class="cmp-handle" id="cmpHandle"></div>
     </div>
-    <div class="s4-track" id="s4track">
-      <span>Ultrasound</span><span>Cleaned</span><span>3D reconstruction</span><span>Final image</span>
-    </div>
-    <p class="slider-cap">drag across to watch your scan become your baby</p>
+    <p class="slider-cap">drag to reveal your enhanced 3D image</p>
   </div>
 </section>
 
@@ -629,31 +635,23 @@ else{
   foc.forEach(f=>{if(f!==hero)fo.observe(f)});
 }
 
-/* 4-stage scrubber (crossfade through real scan -> enhanced image) */
-const slider4=document.getElementById('slider4');
-if(slider4){
-  const imgs=[...slider4.querySelectorAll('.s4img')];
-  const handle=document.getElementById('s4handle');
-  const label=document.getElementById('s4label');
-  const ticks=[...document.querySelectorAll('#s4track span')];
-  const names=['Your ultrasound','Cleaned & calibrated','3D reconstruction','Final enhanced image'];
-  const N=imgs.length;
-  function render(p){
-    p=Math.max(0,Math.min(1,p));
-    const seg=p*(N-1);
-    imgs.forEach((im,i)=>{im.style.opacity=Math.max(0,1-Math.abs(seg-i));});
-    handle.style.left=(p*100)+'%';
-    const idx=Math.round(seg);
-    label.textContent='Stage '+(idx+1)+' — '+names[idx];
-    ticks.forEach((t,i)=>t.classList.toggle('on',i===idx));
-  }
+/* before/after comparison (real ultrasound -> enhanced 3D image) */
+const cmp=document.getElementById('cmp');
+if(cmp){
+  const top=document.getElementById('cmpTop');
+  const handle=document.getElementById('cmpHandle');
   let drag=false;
-  function setX(x){const r=slider4.getBoundingClientRect();render((x-r.left)/r.width);}
-  slider4.addEventListener('pointerdown',e=>{drag=true;try{slider4.setPointerCapture(e.pointerId)}catch(_){}; setX(e.clientX);});
-  slider4.addEventListener('pointermove',e=>{if(drag)setX(e.clientX);});
-  slider4.addEventListener('pointerup',()=>drag=false);
-  slider4.addEventListener('pointercancel',()=>drag=false);
-  render(0);
+  function setP(x){
+    const r=cmp.getBoundingClientRect();
+    let p=(x-r.left)/r.width; p=Math.max(0,Math.min(1,p));
+    top.style.clipPath='inset(0 '+((1-p)*100)+'% 0 0)';
+    handle.style.left=(p*100)+'%';
+  }
+  cmp.addEventListener('pointerdown',e=>{drag=true;try{cmp.setPointerCapture(e.pointerId)}catch(_){}; setP(e.clientX);});
+  cmp.addEventListener('pointermove',e=>{if(drag)setP(e.clientX);});
+  cmp.addEventListener('pointerup',()=>drag=false);
+  cmp.addEventListener('pointercancel',()=>drag=false);
+  const r0=cmp.getBoundingClientRect(); setP(r0.left+r0.width*0.5);
 }
 
 /* count up */
