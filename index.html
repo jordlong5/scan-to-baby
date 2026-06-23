@@ -129,6 +129,18 @@ section{position:relative}
 .handle::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:#fff;border:2px solid var(--sage);box-shadow:0 4px 14px rgba(0,0,0.2)}
 .handle::after{content:'‹ ›';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--sage);font-size:1.3rem;font-weight:700}
 .slider-cap{text-align:center;font-family:'Caveat';font-size:1.5rem;color:var(--rose-deep);margin-top:18px}
+
+/* 4-stage scrubber */
+.slider4{position:relative;max-width:760px;margin:30px auto 0;aspect-ratio:4/3;border-radius:14px;overflow:hidden;cursor:ew-resize;box-shadow:0 30px 70px -40px rgba(58,50,54,.5);user-select:none;touch-action:none;background:#0e0c0d}
+.s4img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none}
+.s4-handle{position:absolute;top:0;bottom:0;left:0;width:3px;background:#fff;z-index:6;transform:translateX(-50%);pointer-events:none;box-shadow:0 0 0 1px rgba(0,0,0,.12)}
+.s4-handle::after{content:'';position:absolute;top:50%;left:50%;width:46px;height:46px;border-radius:50%;background:#fff;border:2px solid var(--sage);transform:translate(-50%,-50%);box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.s4-handle::before{content:'\203A';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--sage);font-size:1.4rem;font-weight:700;z-index:1}
+.s4-label{position:absolute;left:14px;top:14px;z-index:7;background:rgba(0,0,0,.5);color:#fff;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:8px 14px;border-radius:30px;pointer-events:none}
+.s4-track{display:flex;justify-content:space-between;max-width:760px;margin:16px auto 0;gap:8px}
+.s4-track span{flex:1;text-align:center;font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;font-weight:700;color:var(--muted);transition:color .25s}
+.s4-track span.on{color:var(--rose-deep)}
+@media(max-width:520px){.s4-track span{font-size:.58rem}}
 .slabel{position:absolute;bottom:12px;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#fff;background:rgba(0,0,0.35);padding:5px 12px;border-radius:30px;z-index:6}
 .slabel.l{left:14px}.slabel.r{right:14px}
 
@@ -332,42 +344,20 @@ footer .copy{margin-top:18px;font-size:.78rem;color:#8a7e7a}
   <div class="wrap">
     <div class="proof-head">
       <div class="eyebrow rv">Drag to reveal</div>
-      <h2 class="sec-head rv" style="margin-top:8px">From grey blur to your baby's face.</h2>
+      <h2 class="sec-head rv" style="margin-top:8px">From grey scan to your baby's face.</h2>
     </div>
-    <div class="slider" id="slider">
-      <div class="layer after">
-        <svg class="slimg" viewBox="0 0 760 570" preserveAspectRatio="xMidYMid slice">
-          <defs><radialGradient id="sba" cx="50%" cy="40%" r="62%"><stop offset="0%" stop-color="#fbe6d6"/><stop offset="60%" stop-color="#edbd9d"/><stop offset="100%" stop-color="#cd9676"/></radialGradient></defs>
-          <rect width="760" height="570" fill="url(#sba)"/>
-          <ellipse cx="380" cy="250" rx="172" ry="200" fill="#f7d4bf"/>
-          <ellipse cx="322" cy="232" rx="19" ry="23" fill="#5b4338"/>
-          <ellipse cx="438" cy="232" rx="19" ry="23" fill="#5b4338"/>
-          <ellipse cx="316" cy="224" rx="6" ry="6" fill="#fff" opacity=".75"/>
-          <ellipse cx="432" cy="224" rx="6" ry="6" fill="#fff" opacity=".75"/>
-          <ellipse cx="380" cy="270" rx="18" ry="12" fill="#e7a98a"/>
-          <path d="M340 300 Q380 322 420 300" stroke="#c08368" stroke-width="8" fill="none" stroke-linecap="round"/>
-          <path d="M250 150 Q380 90 510 150 Q540 190 500 215 Q380 150 260 215 Q220 190 250 150 Z" fill="#7a5a44" opacity=".5"/>
-        </svg>
-        <span class="slabel r">After</span>
-      </div>
-      <div class="layer before" id="before">
-        <svg class="slimg" viewBox="0 0 760 570" preserveAspectRatio="xMidYMid slice">
-          <defs><filter id="blur"><feGaussianBlur stdDeviation="9"/></filter></defs>
-          <rect width="760" height="570" fill="#b9b1ac"/>
-          <g filter="url(#blur)" opacity=".92">
-            <ellipse cx="380" cy="250" rx="170" ry="198" fill="#9d948f"/>
-            <ellipse cx="380" cy="240" rx="120" ry="150" fill="#aaa099"/>
-            <ellipse cx="330" cy="230" rx="22" ry="26" fill="#7d756f"/>
-            <ellipse cx="430" cy="230" rx="22" ry="26" fill="#7d756f"/>
-            <path d="M250 360 Q380 420 510 360" stroke="#8a817b" stroke-width="14" fill="none"/>
-          </g>
-          <rect width="760" height="570" fill="#000" opacity=".06"/>
-        </svg>
-        <span class="slabel l">Before</span>
-      </div>
-      <div class="handle" id="handle"></div>
+    <div class="slider4" id="slider4">
+      <img class="s4img" src="stage1.jpg" alt="Your original ultrasound scan">
+      <img class="s4img" src="stage2.jpg" alt="The scan cleaned and calibrated">
+      <img class="s4img" src="stage3.jpg" alt="3D reconstruction in progress">
+      <img class="s4img" src="stage4.jpg" alt="Your final enhanced 3D image">
+      <div class="s4-label" id="s4label">Stage 1 — Your ultrasound</div>
+      <div class="s4-handle" id="s4handle"></div>
     </div>
-    <p class="slider-cap">drag the handle, same scan, two worlds</p>
+    <div class="s4-track" id="s4track">
+      <span>Ultrasound</span><span>Cleaned</span><span>3D reconstruction</span><span>Final image</span>
+    </div>
+    <p class="slider-cap">drag across to watch your scan become your baby</p>
   </div>
 </section>
 
@@ -639,23 +629,31 @@ else{
   foc.forEach(f=>{if(f!==hero)fo.observe(f)});
 }
 
-/* before/after slider (pointer events, mouse + touch) */
-const slider=document.getElementById('slider');
-if(slider){
-  const handle=document.getElementById('handle');
-  const before=document.getElementById('before');
-  let dragging=false;
-  function setPos(clientX){
-    const r=slider.getBoundingClientRect();
-    let p=(clientX-r.left)/r.width; p=Math.max(0,Math.min(1,p));
-    before.style.clipPath='inset(0 '+((1-p)*100)+'% 0 0)';
+/* 4-stage scrubber (crossfade through real scan -> enhanced image) */
+const slider4=document.getElementById('slider4');
+if(slider4){
+  const imgs=[...slider4.querySelectorAll('.s4img')];
+  const handle=document.getElementById('s4handle');
+  const label=document.getElementById('s4label');
+  const ticks=[...document.querySelectorAll('#s4track span')];
+  const names=['Your ultrasound','Cleaned & calibrated','3D reconstruction','Final enhanced image'];
+  const N=imgs.length;
+  function render(p){
+    p=Math.max(0,Math.min(1,p));
+    const seg=p*(N-1);
+    imgs.forEach((im,i)=>{im.style.opacity=Math.max(0,1-Math.abs(seg-i));});
     handle.style.left=(p*100)+'%';
+    const idx=Math.round(seg);
+    label.textContent='Stage '+(idx+1)+' — '+names[idx];
+    ticks.forEach((t,i)=>t.classList.toggle('on',i===idx));
   }
-  slider.addEventListener('pointerdown',e=>{dragging=true;try{slider.setPointerCapture(e.pointerId)}catch(_){}; setPos(e.clientX)});
-  slider.addEventListener('pointermove',e=>{if(dragging)setPos(e.clientX)});
-  slider.addEventListener('pointerup',()=>dragging=false);
-  slider.addEventListener('pointercancel',()=>dragging=false);
-  const r0=slider.getBoundingClientRect(); setPos(r0.left+r0.width*0.5);
+  let drag=false;
+  function setX(x){const r=slider4.getBoundingClientRect();render((x-r.left)/r.width);}
+  slider4.addEventListener('pointerdown',e=>{drag=true;try{slider4.setPointerCapture(e.pointerId)}catch(_){}; setX(e.clientX);});
+  slider4.addEventListener('pointermove',e=>{if(drag)setX(e.clientX);});
+  slider4.addEventListener('pointerup',()=>drag=false);
+  slider4.addEventListener('pointercancel',()=>drag=false);
+  render(0);
 }
 
 /* count up */
