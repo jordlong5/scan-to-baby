@@ -197,14 +197,14 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
 <section class="hero">
   <div class="hero-bg"><img src="render_hero.jpg" alt="A lifelike 3D image of a baby's face created from an ultrasound"></div>
   <div class="hero-inner wrap">
-    <div class="eyebrow hero-eye" data-hero>State-of-the-art AI imaging for your 3D ultrasound</div>
-    <h1 data-hero>Meet your baby<br>before you <em>meet your baby</em></h1>
-    <p class="lead" data-hero>Send us your grainy ultrasound and our imaging technology brings out the little face hiding inside it — a clear, lifelike 3D image you'll never stop looking at.</p>
-    <div class="hero-cta" data-hero>
+    <div class="eyebrow hero-eye reveal">State-of-the-art AI imaging for your 3D ultrasound</div>
+    <h1 class="reveal">Meet your baby<br>before you <em>meet your baby</em></h1>
+    <p class="lead reveal">Send us your grainy ultrasound and our imaging technology brings out the little face hiding inside it — a clear, lifelike 3D image you'll never stop looking at.</p>
+    <div class="hero-cta reveal">
       <a href="#pricing" class="btn">Get your enhanced scan</a>
       <a href="#reveal" class="arrowlink" style="color:var(--onink)">See the difference →</a>
     </div>
-    <div class="hero-trust" data-hero>
+    <div class="hero-trust reveal">
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Digital in 24 hours</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Money-back guarantee</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Free UK delivery on prints</span>
@@ -459,8 +459,6 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
   if(window.gsap){
     if(window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
     if(!reduce){
-      var hero=gsap.timeline({delay:.15});
-      hero.from('[data-hero]',{y:40,opacity:0,duration:1,ease:'power3.out',stagger:.13});
       gsap.from('.hero-bg img',{scale:1.12,duration:2.2,ease:'power2.out'});
       if(window.ScrollTrigger){
         gsap.to('.hero-bg img',{yPercent:14,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
