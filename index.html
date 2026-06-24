@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scan to Baby — Meet your baby before you meet your baby</title>
+<title>Scan to Baby, Meet your baby before you meet your baby</title>
 <meta name="description" content="State-of-the-art AI imaging that turns your grainy ultrasound into a clear, lifelike 3D image of your baby's face. Digital or framed, delivered to your door.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,8 +12,8 @@
 <style>
 :root{
   --ink:#130d0c; --ink2:#1e1614; --cream:#FBF6F2; --paper:#ffffff;
-  --rose:#E8A1B5; --rosed:#C06A85; --sage:#9DC4C2;
-  --text:#3A3236; --muted:#8A7E83; --onink:#F1E7E1; --oninkm:#b6a89f;
+  --rose:#E8A1B5; --rosed:#A4456A; --sage:#9DC4C2;
+  --text:#332B2F; --muted:#6E6166; --onink:#F1E7E1; --oninkm:#c2b5ac;
   --ease:cubic-bezier(.22,1,.36,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -35,18 +35,18 @@ section{position:relative}
 .anim .reveal{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
 .anim .reveal.in{opacity:1;transform:none}
 
-header.nav{position:fixed;top:0;left:0;width:100%;z-index:900;display:flex;justify-content:space-between;align-items:center;padding:22px 6vw;transition:background .5s,padding .5s,box-shadow .5s}
+header.nav{position:fixed;top:0;left:0;width:100%;z-index:900;display:flex;justify-content:space-between;align-items:center;padding:22px 6vw;transition:background .5s,box-shadow .5s}
 header.nav.solid{background:rgba(19,13,12,.82);backdrop-filter:blur(12px);padding:14px 6vw;box-shadow:0 1px 0 rgba(255,255,255,.06)}
 .logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.4rem;color:var(--onink);letter-spacing:-.01em}
 .logo b{color:var(--sage)}
 .navcta{font-size:.82rem;font-weight:800;letter-spacing:.02em;padding:11px 22px;border-radius:40px;background:var(--rose);color:#2a1d22;transition:transform .3s,background .3s}
 .navcta:hover{background:#fff;transform:translateY(-2px)}
 
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--rose);color:#2a1d22;font-weight:800;font-family:'Nunito Sans';padding:18px 36px;border-radius:46px;font-size:1.02rem;cursor:pointer;border:none;transition:transform .3s var(--ease),background .3s,box-shadow .3s;box-shadow:0 14px 34px -16px rgba(232,161,181,.8)}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--rose);color:#2a1d22;font-weight:800;font-family:'Nunito Sans';padding:18px 36px;border-radius:46px;font-size:1.02rem;cursor:pointer;border:none;transition:transform .3s var(--ease),background .3s,box-shadow .3s;box-shadow:0 14px 34px -16px rgba(30,20,24,.45)}
 .btn:hover{background:#fff;transform:translateY(-3px)}
 .btn.ghost{background:transparent;color:var(--onink);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)}
 .btn.ghost:hover{background:rgba(255,255,255,.08);color:#fff}
-.btn.dark{background:var(--rosed);color:#fff;box-shadow:0 14px 34px -16px rgba(192,106,133,.8)}
+.btn.dark{background:var(--rosed);color:#fff;box-shadow:0 14px 34px -16px rgba(20,12,16,.5)}
 .btn.dark:hover{background:#a8546c;color:#fff}
 .arrowlink{font-weight:800;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;border-bottom:1.5px solid currentColor;padding-bottom:3px;transition:gap .3s,color .3s}
 .arrowlink:hover{gap:14px;color:var(--rosed)}
@@ -116,7 +116,7 @@ header.nav.solid{background:rgba(19,13,12,.82);backdrop-filter:blur(12px);paddin
 .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px;align-items:stretch}
 .tier{background:var(--paper);border:1px solid rgba(58,50,54,.1);border-radius:20px;padding:32px 26px;display:flex;flex-direction:column;transition:transform .4s var(--ease),box-shadow .4s,border-color .4s;position:relative}
 .tier:hover{transform:translateY(-8px);box-shadow:0 40px 70px -42px rgba(58,50,54,.5)}
-.tier.feat{border-color:var(--rosed);box-shadow:0 30px 60px -38px rgba(192,106,133,.55)}
+.tier.feat{border-color:var(--rosed);box-shadow:0 30px 60px -38px rgba(40,28,34,.5)}
 .tier .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--rosed);color:#fff;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;padding:6px 14px;border-radius:30px;white-space:nowrap}
 .tier h3{font-size:1.24rem;font-weight:600;margin-bottom:6px;line-height:1.2}
 .tier .desc{color:var(--muted);font-size:.9rem;flex:1;margin-bottom:18px}
@@ -159,10 +159,10 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
 .fbtm a:hover{color:#fff}
 .badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .badge{background:rgba(255,255,255,.07);border-radius:6px;padding:6px 12px;font-size:.7rem;font-weight:800;letter-spacing:.05em}
-.disc{margin-top:28px;font-size:.76rem;color:#7d6f6a;max-width:90ch;line-height:1.6}
-.copy{margin-top:14px;font-size:.76rem;color:#7d6f6a}
+.disc{margin-top:28px;font-size:.76rem;color:#9a8b85;max-width:90ch;line-height:1.6}
+.copy{margin-top:14px;font-size:.76rem;color:#9a8b85}
 
-.float{position:fixed;bottom:22px;right:22px;z-index:800;background:var(--rosed);color:#fff;padding:14px 26px;border-radius:46px;font-weight:800;font-size:.92rem;box-shadow:0 16px 36px -12px rgba(192,106,133,.7);opacity:0;transform:translateY(20px);transition:.4s var(--ease);pointer-events:none}
+.float{position:fixed;bottom:22px;right:22px;z-index:800;background:var(--rosed);color:#fff;padding:14px 26px;border-radius:46px;font-weight:800;font-size:.92rem;box-shadow:0 16px 36px -12px rgba(20,12,16,.5);opacity:0;transform:translateY(20px);transition:.4s var(--ease);pointer-events:none}
 .float.show{opacity:1;transform:none;pointer-events:auto}
 .float:hover{background:#a8546c}
 
@@ -198,9 +198,8 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
 <section class="hero">
   <div class="hero-bg"><img src="render_hero.jpg" alt="A lifelike 3D image of a baby's face created from an ultrasound"></div>
   <div class="hero-inner wrap">
-    <div class="eyebrow hero-eye reveal">State-of-the-art AI imaging for your 3D ultrasound</div>
     <h1 class="reveal">Meet your baby<br>before you <em>meet your baby</em></h1>
-    <p class="lead reveal">Send us your grainy ultrasound and our imaging technology brings out the little face hiding inside it — a clear, lifelike 3D image you'll never stop looking at.</p>
+    <p class="lead reveal">Send us your grainy ultrasound and our imaging technology brings out the little face hiding inside it, a clear, lifelike 3D image you'll never stop looking at.</p>
     <div class="hero-cta reveal">
       <a href="#pricing" class="btn">Get your enhanced scan</a>
       <a href="#reveal" class="arrowlink" style="color:var(--onink)">See the difference →</a>
@@ -227,7 +226,7 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
       <span class="cmp-tag r">Enhanced 3D image</span>
       <div class="cmp-h" id="cmpH"></div>
     </div>
-    <p class="cmp-cap reveal">drag to reveal &mdash; same scan, brought to life</p>
+    <p class="cmp-cap reveal">drag to reveal, same scan, brought to life</p>
   </div>
 </section>
 
@@ -236,33 +235,33 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
   <div class="wrap" style="text-align:center">
     <div class="eyebrow reveal" style="color:var(--rose)">Inside the process</div>
     <h2 class="sec-head center reveal" style="color:#fff;margin-top:12px">Not a filter. A full reconstruction pipeline.</h2>
-    <p class="sec-intro center reveal" style="color:var(--oninkm)">Every scan runs through a multi-stage imaging process — part advanced computing, part trained human eye — so the face that comes back is detailed, lifelike and unmistakably yours.</p>
+    <p class="sec-intro center reveal" style="color:var(--oninkm)">Every scan runs through a multi-stage imaging process, part advanced computing, part trained human eye, so the face that comes back is detailed, lifelike and unmistakably yours.</p>
   </div>
   <div class="wrap">
     <div class="pipe">
       <div class="stage reveal">
-        <div class="n">Stage 01</div>
+        <div class="n">Intake</div>
         <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 16V10a2 2 0 0 1 2-2h6M40 16V10a2 2 0 0 0-2-2h-6M8 32v6a2 2 0 0 0 2 2h6M40 32v6a2 2 0 0 1-2 2h-6" stroke-linecap="round"/><line x1="6" y1="24" x2="42" y2="24" stroke-linecap="round"/><circle cx="24" cy="24" r="5"/></svg>
         <h3>Scan intake &amp; calibration</h3>
         <p>We map the usable detail in your ultrasound and correct for the noise, shadows and grain that make scans so hard to read.</p>
       </div>
       <div class="stage reveal">
-        <div class="n">Stage 02</div>
+        <div class="n">Reconstruct</div>
         <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="14" r="3"/><circle cx="12" cy="34" r="3"/><circle cx="36" cy="24" r="3"/><circle cx="24" cy="24" r="3"/><path d="M15 14l6 9M15 34l6-9M27 24h6" stroke-linecap="round"/></svg>
         <h3>Neural reconstruction</h3>
         <p>Advanced imaging models run multiple reconstruction passes on high-performance hardware, rebuilding depth, contours and soft features from your scan data.</p>
       </div>
       <div class="stage reveal">
-        <div class="n">Stage 03</div>
+        <div class="n">Review</div>
         <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 24Q24 8 44 24Q24 40 4 24Z" stroke-linejoin="round"/><circle cx="24" cy="24" r="6"/><path d="M33 33l7 7" stroke-linecap="round"/></svg>
         <h3>Specialist review</h3>
         <p>A trained imaging specialist refines every single image by hand. No order is ever sent without a human eye on it.</p>
       </div>
       <div class="stage reveal">
-        <div class="n">Stage 04</div>
+        <div class="n">Deliver</div>
         <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="8" y="8" width="32" height="32" rx="3"/><path d="M8 32l10-9 8 7 8-8 6 5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="18" cy="17" r="2.5"/></svg>
         <h3>Final render &amp; delivery</h3>
-        <p>Your finished image is rendered in high resolution — ready as a digital file and, if you choose, a gallery-quality framed print.</p>
+        <p>Your finished image is rendered in high resolution, ready as a digital file and, if you choose, a gallery-quality framed print.</p>
       </div>
     </div>
     <div class="statline">
@@ -287,17 +286,17 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
       <div class="vcard reveal">
         <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="8" y="10" width="32" height="28" rx="2"/><rect x="13" y="15" width="22" height="18" rx="1"/></svg>
         <h3>A real print, not just a file</h3>
-        <p>Choose a digital image, or have it printed, framed and posted to your door — with the digital copy included to share.</p>
+        <p>Choose a digital image, or have it printed, framed and posted to your door, with the digital copy included to share.</p>
       </div>
       <div class="vcard reveal">
         <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="24" cy="24" r="6"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8M10 10l5 5M38 38l-5-5M38 10l-5 5M10 38l5-5" stroke-linecap="round"/></svg>
         <h3>State-of-the-art imaging</h3>
-        <p>Built on advanced image-reconstruction technology that rebuilds your scan into a clear, lifelike 3D image — not a hand-drawn guess.</p>
+        <p>Built on advanced image-reconstruction technology that rebuilds your scan into a clear, lifelike 3D image, not a hand-drawn guess.</p>
       </div>
       <div class="vcard reveal">
         <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M24 40C8 28 8 14 18 14c4 0 6 4 6 4s2-4 6-4c10 0 10 14-6 26z" stroke-linejoin="round"/></svg>
         <h3>A glimpse of the future too</h3>
-        <p>Add the optional Future Baby Pic — an AI projection of how your child might look as a toddler. A gentle, playful imagining.</p>
+        <p>Add the optional Future Baby Pic, an AI projection of how your child might look as a toddler. A gentle, playful imagining.</p>
       </div>
     </div>
   </div>
@@ -384,7 +383,7 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
       <div class="acc-item reveal"><button class="acc-q">How long does it take?<span class="mk">+</span></button><div class="acc-a"><p>Your enhanced digital image arrives within 24 hours of us receiving your scan. If you order a print, the framed copy posts and usually arrives within 3 to 5 working days.</p></div></div>
       <div class="acc-item reveal"><button class="acc-q">Is this actually accurate?<span class="mk">+</span></button><div class="acc-a"><p>Our imaging enhances the real features captured in your scan, so the result is based on your baby's own scan data, not a generic stock face. The Future Baby Pic is an AI projection for fun, and we're honest that it's for the feels, not a forecast.</p></div></div>
       <div class="acc-item reveal"><button class="acc-q">What if I don't like it?<span class="mk">+</span></button><div class="acc-a"><p>You're covered by our money-back guarantee. If your enhanced image doesn't melt your heart, just tell us and we'll refund you in full. No awkward emails, no fuss.</p></div></div>
-      <div class="acc-item reveal"><button class="acc-q">My scan is really blurry — will it still work?<span class="mk">+</span></button><div class="acc-a"><p>That's exactly what the technology is built for. Most scans we get are grey and hard to read. The blurrier the start, the bigger the difference in the result.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">My scan is really blurry, will it still work?<span class="mk">+</span></button><div class="acc-a"><p>That's exactly what the technology is built for. Most scans we get are grey and hard to read. The blurrier the start, the bigger the difference in the result.</p></div></div>
       <div class="acc-item reveal"><button class="acc-q">Can I order this as a gift?<span class="mk">+</span></button><div class="acc-a"><p>Lots of grandparents-to-be do exactly that. Just upload the scan the parents shared with you and we'll handle the rest. Add a gift note at checkout.</p></div></div>
       <div class="acc-item reveal"><button class="acc-q">Is my scan kept private?<span class="mk">+</span></button><div class="acc-a"><p>Always. Your images are yours. We never share them, and you can ask us to delete everything once your order is done.</p></div></div>
     </div>
