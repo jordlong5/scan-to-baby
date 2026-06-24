@@ -3,10 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#130d0c">
 <title>Scan to Baby, Meet your baby before you meet your baby</title>
 <meta name="description" content="State-of-the-art AI imaging that turns your grainy ultrasound into a clear, lifelike 3D image of your baby's face. Digital or framed, delivered to your door.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Nunito+Sans:wght@400;600;700;800&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <style>
@@ -17,7 +20,7 @@
   --ease:cubic-bezier(.22,1,.36,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;color-scheme:dark}
 body{font-family:'Nunito Sans',sans-serif;background:var(--ink);color:var(--text);font-size:1.06rem;line-height:1.6;overflow-x:clip}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -27,6 +30,14 @@ h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;line-height:1.02;letter-sp
 .wrap{max-width:1240px;margin:0 auto;padding:0 6vw}
 .eyebrow{font-size:.74rem;text-transform:uppercase;letter-spacing:.26em;font-weight:800;color:var(--rosed)}
 section{position:relative}
+
+/* a11y / interaction polish (Vercel Web Interface Guidelines) */
+a,button,summary{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offset:3px;border-radius:8px}
+h1,h2,h3{text-wrap:balance}
+:is(#reveal,#pricing,[id]):target{scroll-margin-top:96px}
+.skip{position:absolute;left:-9999px;top:0;z-index:2000;background:#fff;color:#130d0c;padding:12px 18px;font-weight:800;border-radius:0 0 10px 0}
+.skip:focus{left:0}
 
 .progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--rose),var(--rosed));z-index:1000}
 .grain{position:fixed;inset:0;z-index:998;pointer-events:none;opacity:.04;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
@@ -163,7 +174,7 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
 .disc{margin-top:28px;font-size:.76rem;color:#9a8b85;max-width:90ch;line-height:1.6}
 .copy{margin-top:14px;font-size:.76rem;color:#9a8b85}
 
-.float{position:fixed;bottom:22px;right:22px;z-index:800;background:var(--rosed);color:#fff;padding:14px 26px;border-radius:46px;font-weight:800;font-size:.92rem;box-shadow:0 16px 36px -12px rgba(20,12,16,.5);opacity:0;transform:translateY(20px);transition:.4s var(--ease);pointer-events:none}
+.float{position:fixed;bottom:22px;right:22px;z-index:800;background:var(--rosed);color:#fff;padding:14px 26px;border-radius:46px;font-weight:800;font-size:.92rem;box-shadow:0 16px 36px -12px rgba(20,12,16,.5);opacity:0;transform:translateY(20px);transition:opacity .4s var(--ease),transform .4s var(--ease);pointer-events:none}
 .float.show{opacity:1;transform:none;pointer-events:auto}
 .float:hover{background:#a8546c}
 
@@ -192,6 +203,7 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
 <div class="progress" id="progress"></div>
 <div class="grain"></div>
 
+<a href="#reveal" class="skip">Skip to content</a>
 <header class="nav" id="nav">
   <div class="logo">Scan to <b>Baby</b></div>
   <a href="#pricing" class="navcta">Get yours</a>
@@ -199,7 +211,7 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"><img src="render_hero.jpg" alt="A lifelike 3D image of a baby's face created from an ultrasound"></div>
+  <div class="hero-bg"><img src="render_hero.jpg" alt="A lifelike 3D image of a baby's face created from an ultrasound" width="1600" height="1120" decoding="async" fetchpriority="high"></div>
   <div class="hero-inner wrap">
     <h1 class="reveal">Meet your baby<br>before you <em>meet your baby</em></h1>
     <p class="lead reveal">Send us your grainy ultrasound and our imaging technology brings out the little face hiding inside it, a clear, lifelike 3D image you'll never stop looking at.</p>
@@ -208,9 +220,9 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
       <a href="#reveal" class="arrowlink" style="color:var(--onink)">See the difference →</a>
     </div>
     <div class="hero-trust reveal">
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Digital in 24 hours</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Money-back guarantee</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Free UK delivery on prints</span>
+      <span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Digital in 24 hours</span>
+      <span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Money-back guarantee</span>
+      <span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Free UK delivery on prints</span>
     </div>
   </div>
   <div class="scrollcue"><span>Scroll</span><div class="bar"></div></div>
@@ -223,8 +235,8 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
     <h2 class="sec-head center reveal" style="margin-top:12px">From a grey scan to your baby's face.</h2>
     <p class="sec-intro center reveal">Drag the slider. The left is a real ultrasound. The right is the enhanced 3D image our technology reconstructs from it.</p>
     <div class="cmp reveal" id="cmp">
-      <img class="ci" src="stage4.jpg" alt="Enhanced 3D image">
-      <div class="cmp-top" id="cmpTop"><img class="ci" src="stage1.jpg" alt="Original ultrasound scan"></div>
+      <img class="ci" src="stage4.jpg" alt="Enhanced 3D image" width="1000" height="750" decoding="async" loading="lazy">
+      <div class="cmp-top" id="cmpTop"><img class="ci" src="stage1.jpg" alt="Original ultrasound scan" width="1000" height="750" decoding="async" loading="lazy"></div>
       <span class="cmp-tag l">Your ultrasound</span>
       <span class="cmp-tag r">Enhanced 3D image</span>
       <div class="cmp-h" id="cmpH"></div>
@@ -244,25 +256,25 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
     <div class="pipe">
       <div class="stage reveal">
         <div class="n">Intake</div>
-        <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 16V10a2 2 0 0 1 2-2h6M40 16V10a2 2 0 0 0-2-2h-6M8 32v6a2 2 0 0 0 2 2h6M40 32v6a2 2 0 0 1-2 2h-6" stroke-linecap="round"/><line x1="6" y1="24" x2="42" y2="24" stroke-linecap="round"/><circle cx="24" cy="24" r="5"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 16V10a2 2 0 0 1 2-2h6M40 16V10a2 2 0 0 0-2-2h-6M8 32v6a2 2 0 0 0 2 2h6M40 32v6a2 2 0 0 1-2 2h-6" stroke-linecap="round"/><line x1="6" y1="24" x2="42" y2="24" stroke-linecap="round"/><circle cx="24" cy="24" r="5"/></svg>
         <h3>Scan intake &amp; calibration</h3>
         <p>We map the usable detail in your ultrasound and correct for the noise, shadows and grain that make scans so hard to read.</p>
       </div>
       <div class="stage reveal">
         <div class="n">Reconstruct</div>
-        <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="14" r="3"/><circle cx="12" cy="34" r="3"/><circle cx="36" cy="24" r="3"/><circle cx="24" cy="24" r="3"/><path d="M15 14l6 9M15 34l6-9M27 24h6" stroke-linecap="round"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="14" r="3"/><circle cx="12" cy="34" r="3"/><circle cx="36" cy="24" r="3"/><circle cx="24" cy="24" r="3"/><path d="M15 14l6 9M15 34l6-9M27 24h6" stroke-linecap="round"/></svg>
         <h3>Neural reconstruction</h3>
         <p>Advanced imaging models run multiple reconstruction passes on high-performance hardware, rebuilding depth, contours and soft features from your scan data.</p>
       </div>
       <div class="stage reveal">
         <div class="n">Review</div>
-        <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 24Q24 8 44 24Q24 40 4 24Z" stroke-linejoin="round"/><circle cx="24" cy="24" r="6"/><path d="M33 33l7 7" stroke-linecap="round"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 24Q24 8 44 24Q24 40 4 24Z" stroke-linejoin="round"/><circle cx="24" cy="24" r="6"/><path d="M33 33l7 7" stroke-linecap="round"/></svg>
         <h3>Specialist review</h3>
         <p>A trained imaging specialist refines every single image by hand. No order is ever sent without a human eye on it.</p>
       </div>
       <div class="stage reveal">
         <div class="n">Deliver</div>
-        <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="8" y="8" width="32" height="32" rx="3"/><path d="M8 32l10-9 8 7 8-8 6 5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="18" cy="17" r="2.5"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="8" y="8" width="32" height="32" rx="3"/><path d="M8 32l10-9 8 7 8-8 6 5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="18" cy="17" r="2.5"/></svg>
         <h3>Final render &amp; delivery</h3>
         <p>Your finished image is rendered in high resolution, ready as a digital file and, if you choose, a gallery-quality framed print.</p>
       </div>
@@ -282,22 +294,22 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
     <h2 class="sec-head reveal" style="margin-top:12px">Small details. Big feelings.</h2>
     <div class="vgrid">
       <div class="vcard reveal">
-        <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M24 6l3 13 13 3-13 3-3 13-3-13-13-3 13-3z" stroke-linejoin="round"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M24 6l3 13 13 3-13 3-3 13-3-13-13-3 13-3z" stroke-linejoin="round"/></svg>
         <h3>From grey blur to a clear face</h3>
         <p>Your scan is precious but you can barely make it out. Our imaging brings out the real features captured in it, so you can finally see your little one.</p>
       </div>
       <div class="vcard reveal">
-        <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="8" y="10" width="32" height="28" rx="2"/><rect x="13" y="15" width="22" height="18" rx="1"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="8" y="10" width="32" height="28" rx="2"/><rect x="13" y="15" width="22" height="18" rx="1"/></svg>
         <h3>A real print, not just a file</h3>
         <p>Choose a digital image, or have it printed, framed and posted to your door, with the digital copy included to share.</p>
       </div>
       <div class="vcard reveal">
-        <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="24" cy="24" r="6"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8M10 10l5 5M38 38l-5-5M38 10l-5 5M10 38l5-5" stroke-linecap="round"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="24" cy="24" r="6"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8M10 10l5 5M38 38l-5-5M38 10l-5 5M10 38l5-5" stroke-linecap="round"/></svg>
         <h3>State-of-the-art imaging</h3>
         <p>Built on advanced image-reconstruction technology that rebuilds your scan into a clear, lifelike 3D image, not a hand-drawn guess.</p>
       </div>
       <div class="vcard reveal">
-        <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M24 40C8 28 8 14 18 14c4 0 6 4 6 4s2-4 6-4c10 0 10 14-6 26z" stroke-linejoin="round"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M24 40C8 28 8 14 18 14c4 0 6 4 6 4s2-4 6-4c10 0 10 14-6 26z" stroke-linejoin="round"/></svg>
         <h3>A glimpse of the future too</h3>
         <p>Add the optional Future Baby Pic, an AI projection of how your child might look as a toddler. A gentle, playful imagining.</p>
       </div>
@@ -307,7 +319,7 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
 
 <!-- EMOTIONAL BAND -->
 <section class="band">
-  <div class="band-bg" id="bandbg"><img src="nb_wide.jpg" alt="A sleeping newborn baby"></div>
+  <div class="band-bg" id="bandbg"><img src="nb_wide.jpg" alt="A sleeping newborn baby" width="1920" height="1080" decoding="async" loading="lazy"></div>
   <div class="band-inner">
     <div class="eyebrow reveal">The wait is worth it</div>
     <h2 class="reveal">And one day soon, you'll hold them for real.</h2>
@@ -363,17 +375,17 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
   <div class="wrap">
     <div class="swiper reveal" id="gallery">
       <div class="swiper-wrapper">
-        <figure class="gslide"><img src="stage1.jpg" alt="An ultrasound scan"><figcaption>Your ultrasound<span>where every order begins</span></figcaption></figure>
-        <figure class="gslide"><img src="render_portrait.jpg" alt="An enhanced 3D image"><figcaption>The enhanced 3D image<span>clear, lifelike, yours</span></figcaption></figure>
-        <figure class="gslide"><img src="scan_sq.jpg" alt="A close ultrasound detail"><figcaption>The detail we work from<span>even low-clarity scans</span></figcaption></figure>
-        <figure class="gslide"><img src="nbB_portrait.jpg" alt="A sleeping newborn"><figcaption>And then, one day<span>you meet them for real</span></figcaption></figure>
+        <figure class="gslide"><img src="stage1.jpg" alt="An ultrasound scan" width="1000" height="750" decoding="async" loading="lazy"><figcaption>Your ultrasound<span>where every order begins</span></figcaption></figure>
+        <figure class="gslide"><img src="render_portrait.jpg" alt="An enhanced 3D image" width="900" height="1200" decoding="async" loading="lazy"><figcaption>The enhanced 3D image<span>clear, lifelike, yours</span></figcaption></figure>
+        <figure class="gslide"><img src="scan_sq.jpg" alt="A close ultrasound detail" width="600" height="600" decoding="async" loading="lazy"><figcaption>The detail we work from<span>even low-clarity scans</span></figcaption></figure>
+        <figure class="gslide"><img src="nbB_portrait.jpg" alt="A sleeping newborn" width="900" height="1200" decoding="async" loading="lazy"><figcaption>And then, one day<span>you meet them for real</span></figcaption></figure>
       </div>
       <div class="swiper-pagination"></div>
     </div>
     <div class="trustrow">
-      <span class="t reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Secure Stripe checkout</span>
-      <span class="t reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Money-back guarantee</span>
-      <span class="t reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg> Your scan stays private</span>
+      <span class="t reveal"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Secure Stripe checkout</span>
+      <span class="t reveal"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Money-back guarantee</span>
+      <span class="t reveal"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg> Your scan stays private</span>
     </div>
   </div>
 </section>
