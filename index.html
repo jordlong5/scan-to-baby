@@ -430,19 +430,12 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var lenis=null;
-  if(!reduce && window.Lenis){
-    lenis = new Lenis({ duration:1.05, smoothWheel:true, wheelMultiplier:1, easing:function(t){return 1-Math.pow(1-t,3);} });
-    function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
-    if(window.ScrollTrigger){ lenis.on('scroll', ScrollTrigger.update); }
-  }
+  var lenis=null; /* native scrolling: fast, matches input exactly */
   document.querySelectorAll('a[href^="#"]').forEach(function(a){
     a.addEventListener('click',function(e){
       var id=a.getAttribute('href'); if(id.length<2) return;
