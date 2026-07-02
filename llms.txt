@@ -20,5 +20,5 @@
 - Serves: United Kingdom. Currency: GBP.
 
 ## Links
-- Home and ordering: https://scan-to-baby.vercel.app/
-- Machine-readable pricing: https://scan-to-baby.vercel.app/pricing.md
+- Home and ordering: https://scantobaby.com/
+- Machine-readable pricing: https://scantobaby.com/pricing.md

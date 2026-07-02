@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://scan-to-baby.vercel.app/</loc>
+    <loc>https://scantobaby.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://scan-to-baby.vercel.app/privacy.html</loc>
+    <loc>https://scantobaby.com/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://scan-to-baby.vercel.app/terms.html</loc>
+    <loc>https://scantobaby.com/terms.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://scan-to-baby.vercel.app/refunds.html</loc>
+    <loc>https://scantobaby.com/refunds.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

@@ -21,4 +21,4 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-Sitemap: https://scan-to-baby.vercel.app/sitemap.xml
+Sitemap: https://scantobaby.com/sitemap.xml
