@@ -181,6 +181,7 @@ header.nav.solid{background:rgba(19,13,12,.82);backdrop-filter:blur(12px);paddin
 .gslide img{width:100%;height:100%;object-fit:cover}
 .gslide figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 20px 18px;background:linear-gradient(transparent,rgba(19,13,12,.85));color:#fff;font-weight:700;font-size:.95rem}
 .gslide figcaption span{display:block;font-weight:400;font-size:.8rem;color:var(--oninkm);margin-top:2px}
+.or-chip{position:absolute;left:10px;top:50%;transform:translateY(-50%);z-index:9;width:50px;height:50px;border-radius:50%;background:var(--rose);color:#2a1d22;font-weight:800;font-size:.85rem;letter-spacing:.04em;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(0,0,0,.45),0 0 0 4px rgba(19,13,12,.4)}
 .swiper-pagination-bullet{background:var(--oninkm)}
 .swiper-pagination-bullet-active{background:var(--rose)}
 
@@ -206,6 +207,17 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
 .fbtm a:hover{color:#fff}
 .badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .badge{background:rgba(255,255,255,.07);border-radius:6px;padding:6px 12px;font-size:.7rem;font-weight:800;letter-spacing:.05em}
+.paylogos{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.pay{height:30px;min-width:48px;padding:0 9px;background:#fff;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.pay b{font-family:Arial,Helvetica,sans-serif;font-weight:800;font-size:.74rem;line-height:1;letter-spacing:-.2px;white-space:nowrap}
+.pay .mc{position:relative;width:34px;height:22px}
+.pay .mc i{position:absolute;top:0;width:22px;height:22px;border-radius:50%}
+.pay .mc i.r{left:0;background:#EB001B}
+.pay .mc i.o{right:0;background:#F79E1B;mix-blend-mode:multiply}
+.navactions{display:flex;align-items:center;gap:14px}
+.navcart{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;color:var(--onink);background:rgba(255,255,255,.08);transition:background .3s,transform .3s;position:relative}
+.navcart:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
+.navcart svg{width:19px;height:19px}
 .disc{margin-top:28px;font-size:.76rem;color:#9a8b85;max-width:90ch;line-height:1.6}
 .copy{margin-top:14px;font-size:.76rem;color:#9a8b85}
 
@@ -241,7 +253,10 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
 <a href="#reveal" class="skip">Skip to content</a>
 <header class="nav" id="nav">
   <div class="logo">Scan to <b>Baby</b></div>
-  <a href="#pricing" class="navcta">Get yours</a>
+  <div class="navactions">
+    <a href="#pricing" class="navcart" aria-label="View options and check out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></a>
+    <a href="#pricing" class="navcta">Get yours</a>
+  </div>
 </header>
 
 <!-- HERO -->
@@ -410,15 +425,15 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
   <div class="wrap">
     <div class="swiper reveal" id="gallery">
       <div class="swiper-wrapper">
-        <figure class="gslide"><img src="gallery1.jpg" alt="A 3D baby scan" width="1000" height="750" decoding="async" loading="lazy"><figcaption>Your 3D scan<span>where every order begins</span></figcaption></figure>
-        <figure class="gslide"><img src="render_portrait.jpg" alt="An enhanced 3D image" width="900" height="1200" decoding="async" loading="lazy"><figcaption>The enhanced 3D image<span>clear, detailed, yours</span></figcaption></figure>
+        <figure class="gslide"><img src="gallery1.jpg" alt="A 3D baby scan" width="1000" height="750" decoding="async" loading="lazy"><figcaption>Your 3D Scan<span>where every order begins</span></figcaption></figure>
+        <figure class="gslide"><span class="or-chip" aria-hidden="true">OR</span><img src="render_portrait.jpg" alt="An enhanced 3D image" width="900" height="1200" decoding="async" loading="lazy"><figcaption>The enhanced 3D image<span>clear, detailed, yours</span></figcaption></figure>
         <figure class="gslide"><img src="scan_sq.jpg" alt="A close detail of a 3D scan" width="600" height="600" decoding="async" loading="lazy"><figcaption>The detail we work from<span>every contour and feature</span></figcaption></figure>
         <figure class="gslide"><img src="nbB_portrait.jpg" alt="A sleeping newborn" width="900" height="1200" decoding="async" loading="lazy"><figcaption>And then, one day<span>you meet them for real</span></figcaption></figure>
       </div>
       <div class="swiper-pagination"></div>
     </div>
     <div class="trustrow">
-      <span class="t reveal"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Secure Stripe checkout</span>
+      <span class="t reveal"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Secure checkout</span>
       <span class="t reveal"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Money-back guarantee</span>
       <span class="t reveal"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg> Your scan stays private</span>
     </div>
@@ -450,10 +465,16 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
     <div class="fbtm">
       <div>
         <div style="font-family:'Fraunces';font-weight:600;font-size:1.2rem;color:#fff;margin-bottom:8px">Scan to <span style="color:var(--sage)">Baby</span></div>
-        <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Refunds</a><a href="#">Contact</a>
+        <a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refunds.html">Refunds</a><a href="mailto:hello@scantobaby.co.uk">Contact</a>
       </div>
-      <div class="badges">
-        <span class="badge">VISA</span><span class="badge">MASTERCARD</span><span class="badge">AMEX</span><span class="badge">STRIPE SECURE</span>
+      <div class="paylogos" aria-label="We accept Visa, Mastercard, American Express, Apple Pay, Google Pay, PayPal and Shop Pay">
+        <span class="pay"><b style="color:#1434CB;font-style:italic">VISA</b></span>
+        <span class="pay"><span class="mc"><i class="r"></i><i class="o"></i></span></span>
+        <span class="pay"><b style="color:#1F72CD">AMEX</b></span>
+        <span class="pay"><b style="color:#000"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-1px;margin-right:3px" fill="#000"><path d="M17.05 12.6c-.03-2.4 1.96-3.55 2.05-3.61-1.12-1.64-2.86-1.86-3.48-1.89-1.48-.15-2.89.87-3.64.87-.75 0-1.91-.85-3.14-.83-1.61.02-3.1.94-3.93 2.38-1.68 2.91-.43 7.22 1.2 9.58.8 1.16 1.75 2.46 3 2.41 1.2-.05 1.66-.78 3.11-.78 1.45 0 1.86.78 3.14.75 1.3-.02 2.12-1.18 2.91-2.34.92-1.34 1.3-2.64 1.32-2.71-.03-.01-2.53-.97-2.56-3.86ZM14.7 5.6c.66-.8 1.11-1.92.99-3.03-.95.04-2.11.63-2.79 1.43-.61.71-1.15 1.84-1.01 2.92 1.06.08 2.14-.54 2.81-1.32Z"/></svg>Pay</b></span>
+        <span class="pay"><b><span style="color:#4285F4">G</span>&nbsp;<span style="color:#5F6368">Pay</span></b></span>
+        <span class="pay"><b><span style="color:#003087">Pay</span><span style="color:#009CDE">Pal</span></b></span>
+        <span class="pay"><b style="color:#5A31F4">shop&nbsp;Pay</b></span>
       </div>
     </div>
     <p class="disc">Scan to Baby uses AI image-enhancement technology to create keepsake images from your 3D baby scan or ultrasound. It is not a medical or diagnostic service, does not predict your baby's appearance or health, and should never replace medical advice or imaging from your care team. The Future Baby Pic is an AI projection for entertainment only.</p>
