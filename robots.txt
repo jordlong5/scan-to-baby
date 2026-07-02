@@ -1,0 +1,24 @@
+# Scan to Baby — search engines and AI answer engines welcome
+
+User-agent: *
+Allow: /
+
+# AI crawlers (so ChatGPT, Perplexity, Claude, Gemini, Copilot can cite us)
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://scan-to-baby.vercel.app/sitemap.xml

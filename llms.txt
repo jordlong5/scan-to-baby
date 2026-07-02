@@ -1,0 +1,23 @@
+# Scan to Baby
+
+> Scan to Baby is a UK AI image-enhancement studio. You send the 3D baby scan you already have, and we refine it with AI imaging plus a trained human review into a clear, detailed keepsake image of your baby's face, delivered digitally or printed and framed.
+
+## What we do
+- We take your existing 3D baby scan and enhance it, sharpening the depth, contours and soft features into a detailed keepsake.
+- We are not a medical or diagnostic service, and the result is not a prediction of the baby's real appearance.
+
+## Products and pricing (GBP)
+- 3D Scan Enhancement, Digital: £9.99
+- 3D Scan Enhancement, Printed and Framed (free UK delivery, digital copy included): £19.99
+- Future Baby Pic (a playful AI projection, for fun not a forecast): £14.99
+- The Bundle, all three: £29.99
+
+## Key facts
+- Delivery: digital image within 24 hours of us receiving your scan; framed prints within 3 to 5 working days.
+- Guarantee: 100% money-back if you are not happy.
+- Privacy: your scan is never shared and can be deleted on request.
+- Serves: United Kingdom. Currency: GBP.
+
+## Links
+- Home and ordering: https://scan-to-baby.vercel.app/
+- Machine-readable pricing: https://scan-to-baby.vercel.app/pricing.md
