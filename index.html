@@ -218,6 +218,27 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
 .navcart{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;color:var(--onink);background:rgba(255,255,255,.08);transition:background .3s,transform .3s;position:relative}
 .navcart:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
 .navcart svg{width:19px;height:19px}
+.tp{background:#0f0a09;padding:96px 0}
+.tp .wrap{max-width:1180px}
+.tp-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;margin-bottom:46px}
+.tp-brand{display:inline-flex;align-items:center;gap:8px;font-weight:800;color:var(--onink);font-size:1.08rem;letter-spacing:.01em}
+.tp-brand .tpstar{width:22px;height:22px;background:#00b67a;display:inline-flex;align-items:center;justify-content:center;border-radius:3px}
+.tp-brand .tpstar svg{width:15px;height:15px;fill:#fff}
+.tp-score{display:inline-flex;gap:3px}
+.tp-score .s{width:32px;height:32px;background:#00b67a;display:inline-flex;align-items:center;justify-content:center;border-radius:4px}
+.tp-score .s svg{width:21px;height:21px;fill:#fff}
+.tp-meta{color:var(--oninkm);font-size:1rem}
+.tp-meta b{color:var(--onink)}
+.tp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tp-card{background:#181110;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:26px;text-align:left}
+.tp-card .rc-stars{display:inline-flex;gap:2px;margin-bottom:14px}
+.tp-card .rc-stars .s{width:22px;height:22px;background:#00b67a;display:inline-flex;align-items:center;justify-content:center;border-radius:3px}
+.tp-card .rc-stars .s svg{width:14px;height:14px;fill:#fff}
+.tp-card h3{font-family:'Fraunces',serif;font-weight:600;color:#fff;font-size:1.14rem;margin-bottom:8px}
+.tp-card p{color:#d9cdc7;font-size:.96rem;line-height:1.62;margin-bottom:16px}
+.tp-card .rc-by{color:var(--oninkm);font-size:.86rem;font-weight:700}
+.tp-card .rc-by span{color:#00b67a;font-weight:800}
+@media(max-width:860px){.tp-grid{grid-template-columns:1fr}.tp{padding:70px 0}}
 .disc{margin-top:28px;font-size:.76rem;color:#9a8b85;max-width:90ch;line-height:1.6}
 .copy{margin-top:14px;font-size:.76rem;color:#9a8b85}
 
@@ -373,6 +394,44 @@ footer{background:var(--ink);color:var(--oninkm);padding:clamp(90px,12vh,140px) 
   <div class="band-inner">
     <div class="eyebrow reveal">The wait is worth it</div>
     <h2 class="reveal">And one day soon, you'll hold them for real.</h2>
+  </div>
+</section>
+
+<!-- REVIEWS / TRUSTPILOT -->
+<!-- ⚠ DEMO PREVIEW ONLY: The 4.9 rating, "1,217 reviews" and the review cards below are PLACEHOLDER content to show the layout. They must be replaced with the official Trustpilot widget and genuine customer reviews before this goes live to real customers. Publishing fabricated reviews/ratings is unlawful in the UK (DMCC Act 2024) and breaches Trustpilot's terms. -->
+<section class="tp">
+  <div class="wrap">
+    <div class="tp-head reveal">
+      <div class="tp-brand"><span class="tpstar"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span> Trustpilot</div>
+      <div class="tp-score" aria-label="Rated 4.9 out of 5 stars">
+        <span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span>
+        <span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span>
+        <span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span>
+        <span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span>
+        <span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span>
+      </div>
+      <div class="tp-meta"><b>Rated 4.9 / 5 &mdash; Excellent</b> &middot; based on <b>1,217 reviews</b></div>
+    </div>
+    <div class="tp-grid">
+      <article class="tp-card reveal">
+        <span class="rc-stars" aria-hidden="true"><span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span><span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span><span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span><span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span><span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span></span>
+        <h3>I cried the moment I opened it</h3>
+        <p>Sent our 20-week 3D scan on the Tuesday and had the enhanced image back the next morning. You could see her little nose and lips so clearly. Worth every single penny.</p>
+        <div class="rc-by">Sophie M. &middot; <span>Verified</span></div>
+      </article>
+      <article class="tp-card reveal">
+        <span class="rc-stars" aria-hidden="true"><span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span><span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span><span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span><span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span><span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span></span>
+        <h3>Perfect keepsake before baby arrived</h3>
+        <p>We only had a slightly blurry ultrasound but they still worked magic with it. The framed print is now on our nursery wall and it's the first thing everyone comments on.</p>
+        <div class="rc-by">Daniel &amp; Aimee R. &middot; <span>Verified</span></div>
+      </article>
+      <article class="tp-card reveal">
+        <span class="rc-stars" aria-hidden="true"><span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span><span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span><span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span><span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span><span class="s"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg></span></span>
+        <h3>Genuinely blown away</h3>
+        <p>Ordered the bundle for my sister's baby shower and the whole room went quiet. Fast, easy and the quality is beautiful. Couldn't recommend them more highly.</p>
+        <div class="rc-by">Priya K. &middot; <span>Verified</span></div>
+      </article>
+    </div>
   </div>
 </section>
 
