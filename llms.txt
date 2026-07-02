@@ -1,9 +1,10 @@
 # Scan to Baby
 
-> Scan to Baby is a UK AI image-enhancement studio. You send the 3D baby scan you already have, and we refine it with AI imaging plus a trained human review into a clear, detailed keepsake image of your baby's face, delivered digitally or printed and framed.
+> Scan to Baby is a UK AI image-enhancement studio. You send the 3D baby scan you already have (or a standard ultrasound), and we refine it with AI imaging plus a trained human review into a clear, detailed keepsake image of your baby's face, delivered digitally or printed and framed.
 
 ## What we do
-- We take your existing 3D baby scan and enhance it, sharpening the depth, contours and soft features into a detailed keepsake.
+- We take your existing 3D baby scan, or a standard ultrasound, and enhance it, sharpening the depth, contours and soft features into a detailed keepsake.
+- A 3D scan gives the sharpest results; a standard ultrasound works too, just with less detail.
 - We are not a medical or diagnostic service, and the result is not a prediction of the baby's real appearance.
 
 ## Products and pricing (GBP)

@@ -1,6 +1,6 @@
 # Pricing — Scan to Baby (GBP)
 
-All products enhance the 3D baby scan you send us. Prices in GBP. Serves the United Kingdom.
+All products enhance the scan you send us, a 3D scan (best results) or a standard ultrasound. Prices in GBP. Serves the United Kingdom.
 
 ## 3D Scan Enhancement, Digital
 - Price: £9.99
